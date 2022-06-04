@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('pointers', function (Blueprint $table) {
             $table->id();
-            $table->string('pointer');
-            $table->string('keterangan');
+            $table->string('pointer')->nullable();
+            $table->string('keterangan')->nullable();
             $table->bigInteger('agenda_id');
-            $table->bigInteger('unit_id');
             $table->timestamps();
         });
     }

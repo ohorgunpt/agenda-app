@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\sambutan;
+use App\Models\Agenda;
+use App\Models\Sambutan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use DB;
@@ -14,6 +15,10 @@ class SambutanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function input(Request $request, $id){
+        $agenda = Agenda::findOrFail($id);
+        return view('sambutan.add', compact('agenda'));
+    }
     public function index()
     {
         //
@@ -75,6 +80,11 @@ class SambutanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //sambutan
+        $sambutan = Sambutan::find($id);
+        $sambutan->sambutan = $request->input('sambutan');
+        $sambutan->save();
+        return redirect()->route('agenda.index')->with('success', 'Data berhasil diubah');
          //update data unit
         //  $this->validate($request,[
         //     'agenda' => 'required',

@@ -1,4 +1,3 @@
-
 @extends('master')
 @section('title')
     <title>Edit Agenda Page</title>
@@ -28,28 +27,28 @@
                 <div class="card-header">
                     <h4>Form Edit</h4>
                 </div>
-                {{-- <form action="{{ route('sambutan.update', $agenda->id) }}" method="post"> --}}
+                <form action="{{ route('sambutan.update', $agenda->id) }}" method="post">
                     @csrf
                     @method('PUT')
                     <table class="table table-outline-primary table-border">
                         <tr>
                             <td>Agenda</td>
                             <td>
-                                <input class="form-control" value="" type="text" name="agenda">
+                                <input class="form-control" value="{{ $agenda->agenda }}" type="text" name="agenda"
+                                    readonly>
                             </td>
                         </tr>
                         <tr>
                             <td>Tanggal</td>
                             <td>
-                                <input class="form-control" value="" type="date" name="tanggal">
+                                <input class="form-control" value="{{ $agenda->tanggal }}" type="date" readonly
+                                    name="tanggal">
                             </td>
                         </tr>
                         <tr>
                             <td>Sambutan</td>
                             <td>
-                                <textarea>
-
-                                  </textarea>
+                               <input type="text" name="sambutan" class="form-control">
                             </td>
                         </tr>
                         <tr>
@@ -67,5 +66,3 @@
     </section>
     </section>
 @endsection
-
-
