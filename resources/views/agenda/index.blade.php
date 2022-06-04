@@ -49,11 +49,10 @@
                                                   <td>{{ $a->unit_id }}</td>
                                                   <td>
                                                       <a href="{{ route('agenda.edit', $a->id) }}"
-                                                          class="btn btn-warning" title="Edit"><i
-                                                              class="fas fa-edit"></i></a>
+                                                          class="btn btn-warning" title="Edit">Edit Agenda</a>
                                                       <a href="{{ route('sambutan.input', $a->id) }}"
                                                           class="btn btn-icon icon-left btn-warning"
-                                                          title="Tambah Sambutan"><i class="fas fa-star"></i></a>
+                                                          title="Tambah Sambutan">Tambah Sambutan</a>
                                                       <a href="{{ route('agenda.destroy', $a->id) }}"
                                                           class="btn btn-danger" title="Hapus"><i
                                                               class="fas fa-trash"></i></a>

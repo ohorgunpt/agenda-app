@@ -48,7 +48,8 @@
                         <tr>
                             <td>Sambutan</td>
                             <td>
-                               <input type="text" name="sambutan" class="form-control">
+                                <input type="text" value="{{ $sambutan->sambutan }}" name="sambutan"
+                                    class="form-control">
                             </td>
                         </tr>
                         <tr>
