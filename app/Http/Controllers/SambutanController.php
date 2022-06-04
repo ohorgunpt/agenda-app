@@ -15,9 +15,11 @@ class SambutanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function input(Request $request, $id){
+    public function input(Request $request, $id)
+    {
         $agenda = Agenda::findOrFail($id);
-        return view('sambutan.add', compact('agenda'));
+        $sambutan = Sambutan::where('id', $agenda->id)->first();//select sambutan where id = agenda_id
+        return view('sambutan.add', compact('agenda', 'sambutan'));
     }
     public function index()
     {
@@ -85,7 +87,7 @@ class SambutanController extends Controller
         $sambutan->sambutan = $request->input('sambutan');
         $sambutan->save();
         return redirect()->route('agenda.index')->with('success', 'Data berhasil diubah');
-         //update data unit
+        //update data unit
         //  $this->validate($request,[
         //     'agenda' => 'required',
         //     'kategori' => 'required',
