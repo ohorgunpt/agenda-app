@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Agenda;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Unit;
 
 class AgendaController extends Controller
 {
@@ -28,7 +28,8 @@ class AgendaController extends Controller
     public function create()
     {
         //
-        return view('agenda.create');
+        $unit = Unit::all(); //select * from unit
+        return view('agenda.create', compact('unit'));
     }
 
     /**
@@ -88,8 +89,9 @@ class AgendaController extends Controller
     {
         //passing to edit page
         $agenda = Agenda::find($id);
+        $units = Unit::all();
         //redirect to edit page
-        return view('agenda.edit', compact('agenda'));
+        return view('agenda.edit', compact('agenda', 'units'));
     }
 
 

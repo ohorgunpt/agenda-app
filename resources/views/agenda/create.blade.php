@@ -27,7 +27,8 @@
                 <form action="{{ route('agenda.store') }}" method="post">
                     @csrf
                     @method('POST')
-                    <table class="table table-outline-primary table-border">
+
+                    <table class="table table-responsive table-outline-primary table-border">
                         <tr>
                             <td>Agenda</td>
                             <td>
@@ -79,7 +80,11 @@
                         <tr>
                             <td>ID Unit</td>
                             <td>
-                                <input class="form-control" type="text" name="unit_id" placeholder="ID Unit">
+                                <select name="unit_id" class="form-control">
+                                    @foreach ($unit as $units)
+                                        <option value="{{ $units->id }}">{{ $units->nama_unit }}</option>
+                                    @endforeach
+                                </select>
                             </td>
                         </tr>
                         <tr>

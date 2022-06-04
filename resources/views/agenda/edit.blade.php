@@ -79,7 +79,18 @@
                         <tr>
                             <td>Unit</td>
                             <td>
-                                <input class="form-control" value="{{$agenda->unit_id}}" type="text" name="unit_id">
+                                <select name="unit_id" class="form-control">
+                                    {{-- @if ($agenda->unit_id == null)
+                                        <option value="">-- Pilih Unit --</option>
+
+                                    @elseif ($agenda->unit_id == unit_id)
+                                        <option value="{{$agenda->unit_id}}">{{$agenda->unit->nama}}</option>
+
+                                    @endif --}}
+                                    @foreach ($units as $unit)
+                                        <option value="{{ $unit->id }}" {{ $agenda->unit_id == $unit->id ? 'selected' : '' }}>{{ $unit->nama_unit }}</option>
+                                    @endforeach
+                                </select>
                             </td>
                         </tr>
                         <tr>
