@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('sambutans', function (Blueprint $table) {
             $table->id();
-            $table->string('sambutan');
-            $table->string('keterangan');
+            $table->string('sambutan')->nullable();
+            $table->string('keterangan')->nullable();
             $table->bigInteger('agenda_id');
-            $table->bigInteger('unit_id');
+            // $table->bigInteger('unit_id');
             $table->timestamps();
         });
     }

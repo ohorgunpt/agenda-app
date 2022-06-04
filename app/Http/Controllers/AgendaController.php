@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Agenda;
 use Illuminate\Http\Request;
 use App\Models\Unit;
+use App\Models\Sambutan;
+use App\Models\Pointer;
 
 class AgendaController extends Controller
 {
@@ -17,7 +19,7 @@ class AgendaController extends Controller
     {
         //kita test master bladenya
         $agenda = Agenda::all();
-        return view ('agenda.index',compact('agenda'));
+        return view('agenda.index', compact('agenda'));
     }
 
     /**
@@ -42,7 +44,7 @@ class AgendaController extends Controller
     {
         //Function add to database
         //menampilkan pesan error apabila tidak diisi
-        $this->validate($request,[
+        $this->validate($request, [
             'agenda' => 'required',
             'kategori' => 'required',
             'tanggal' => 'required',
@@ -55,14 +57,38 @@ class AgendaController extends Controller
         ]);
         //mengambil data dari form
         //$nama_satker = $-POST ['nama_satker'];
-        $input = $request ->all();
+        $input = $request->all();
         //insert data ke table balai
         //INSERT INTO balai (nama_satker) VALUES ('$nama_satker);
-        Agenda::create($input);
-        // $agenda = Agenda::find($id);
-       // $sambutan = new Sambutan();
-        // $sambutan->agenda_id = $agenda;
-        //$sambutan->save();
+        $agenda_id = Agenda::create($input);
+        $agenda = Agenda::findOrFail($agenda_id->id);
+
+        // foreach ($request->agenda_id as $unit_id) {
+        //     $sambutan = new Sambutan;
+        //     $sambutan->agenda_id = $agenda_id->id;
+        //     $sambutan->unit_id = $unit_id->keterangan;
+        //     dd($sambutan);
+        // }
+        Sambutan::create(
+            [
+                'agenda_id' => $agenda->id,
+                'sambutan' => $request->sambutan,
+                'keterangan' => $request->keterangan
+            ]
+        );
+        Pointer::create([
+            'agenda_id' => $agenda->id,
+            'pointer' => $request->pointer,
+            'keterangan' => $request->keterangan
+        ]);
+
+
+        // $sambutan = new Sambutan();
+
+        // $sambutan->agenda_id = $agenda->id;
+        // $sambutan->sambutan = $request->sambutan;
+        // $sambutan->keterangan = $request->keterangan;
+        // $sambutan->save();
 
         //redirect to index balai
         return redirect()->route('agenda.index')->with('success', 'Data berhasil ditambahkan');
@@ -106,7 +132,7 @@ class AgendaController extends Controller
     public function update(Request $request, $id)
     {
         //update data unit
-        $this->validate($request,[
+        $this->validate($request, [
             'agenda' => 'required',
             'kategori' => 'required',
             'tanggal' => 'required',

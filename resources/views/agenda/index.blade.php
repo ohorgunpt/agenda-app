@@ -51,7 +51,7 @@
                                                       <a href="{{ route('agenda.edit', $a->id) }}"
                                                           class="btn btn-warning" title="Edit"><i
                                                               class="fas fa-edit"></i></a>
-                                                      <a href="{{ route('sambutan.edit', $a->id) }}"
+                                                      <a href="{{ route('sambutan.input', $a->id) }}"
                                                           class="btn btn-icon icon-left btn-warning"
                                                           title="Tambah Sambutan"><i class="fas fa-star"></i></a>
                                                       <a href="{{ route('agenda.destroy', $a->id) }}"
