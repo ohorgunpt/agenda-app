@@ -25,9 +25,7 @@
 
                             </td>
                             <td class="text-center">
-                                <a href="{{ route('agenda.showsambutan') }}"
-                                    class="btn btn-primary btn-lg-8">SAMBUTAN</a>
-
+                                <a href="{{ route('sambutan.show', $sambutan->id) }}" class="btn btn-primary btn-lg-8">SAMBUTAN</a>
                             </td>
                         </tr>
                     </table>

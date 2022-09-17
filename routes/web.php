@@ -58,6 +58,7 @@ Route::get('datadukung/destroy/{id}', [\App\Http\Controllers\DatadukungControlle
 //Route to Sambutan
 Route::resource('sambutan', \App\Http\Controllers\SambutanController::class);
 Route::get('sambutan/input/{id}', [\App\Http\Controllers\SambutanController::class,'input'])->name('sambutan.input');
+// Route::get('showsambutan',[\App\Http\Controllers\SambutanController::class,'show']);
 //Route to Sambutan
 Route::resource('index', \App\Http\Controllers\SambutanController::class);
 
