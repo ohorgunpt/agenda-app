@@ -11,18 +11,22 @@
         </div>
         <div class="section-body">
             <div class="card">
-                <div class="card-header">
-                    <h4>Data Detail Agenda</h4>
-                </div>
                 <div class="card-body">
+                    <p class="text-center" align='center'>
+                    <h4>{{ $agenda->agenda }}</h4>
+                    <h6>{{ $agenda->tanggal }}</h6>
+                    <h6>{{ $agenda->mulai }}</h6>
+
+                    </p>
                     <table class="table table-bordered">
                         <tr>
                             <td class="text-center">
-                                <button class="btn btn-primary btn-lg-8">POINTER</button>
+                                <a href="#" class="btn btn-primary btn-lg-8">POINTER</a>
 
                             </td>
                             <td class="text-center">
-                                <button class="btn btn-primary btn-lg-8">SAMBUTAN</button>
+                                <a href="{{ route('agenda.showsambutan') }}"
+                                    class="btn btn-primary btn-lg-8">SAMBUTAN</a>
 
                             </td>
                         </tr>
@@ -38,7 +42,7 @@
                             @foreach ($datadukung as $dk)
                                 <tr>
                                     <td>{{ $dk->nama_data_dukung }}</td>
-                                    <td> <a href="storage/{{ $dk->file }}" class="btn btn-info" title="File"><i
+                                    <td> <a href="{{ Storage::url($dk->file) }}" class="btn btn-info" title="File"><i
                                                 class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>

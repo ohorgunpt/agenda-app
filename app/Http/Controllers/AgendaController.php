@@ -106,10 +106,13 @@ class AgendaController extends Controller
         //
     }
 
-    public function showdetail()
+    public function showdetail($id)
     {
+
         $datadukung = Datadukung::all();
-        return view('agenda.showdetail', compact('datadukung'));
+        $agenda = Agenda::findOrFail($id);
+        $sambutan = Sambutan::where('id', $agenda->id)->first();
+        return view('agenda.showdetail', compact('datadukung','agenda','sambutan'));
     }
 
     /**

@@ -42,7 +42,7 @@ Route::get('personel/destroy/{id}', [\App\Http\Controllers\PersonelController::c
 
 //Route to Agenda
 Route::resource('agenda', \App\Http\Controllers\AgendaController::class);
-Route::get('agenda-detail',[\App\Http\Controllers\AgendaController::class,'showdetail'])->name('agenda.showdetail');
+Route::get('agenda-detail/{id}',[\App\Http\Controllers\AgendaController::class,'showdetail'])->name('agenda.showdetail');
 //oute untuk destroy Agenda
 Route::get('agenda/destroy/{id}', [\App\Http\Controllers\AgendaController::class,'destroy'])->name('agenda.destroy');
 

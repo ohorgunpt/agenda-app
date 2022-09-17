@@ -62,7 +62,8 @@
                                                       <a href="{{ route('data_dukung.index', $a->id) }}"
                                                           class="btn btn-icon icon-left btn-warning"
                                                           title="List Data Dukung">List Data Dukung</a>
-                                                      <a href="{{ route('agenda.showdetail') }}" class="btn btn-primary"
+
+                                                      <a href="{{ route('agenda.showdetail', $a->id) }}" class="btn btn-primary"
                                                           title="Detail"><i class="fas fa-meh-rolling-eyes"></i></a>
                                                       <a href="{{ route('agenda.destroy', $a->id) }}"
                                                           class="btn btn-danger" title="Hapus"><i
