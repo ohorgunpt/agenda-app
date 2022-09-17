@@ -1,18 +1,21 @@
 @extends('master')
 @section('title')
-    <title>Create Data Dukung Page</title>
+    <title>Edit Agenda Page</title>
 @endsection
+
+
+
 
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Create Data Dukung Page</h1>
+            <h1>Edit Agenda Page</h1>
         </div>
         <div class="section-body">
             {{-- show error message --}}
             @if ($errors->any())
                 <div class="alert alert-danger">
-                    <strong>Wait</strong> There were some problems with your input<br>
+                    <strong>Wait</strong> There were some problems with your update<br>
                     <ul>
                         @foreach ($errors->all() as $item)
                             <li>{{ $item }}</li>
@@ -22,38 +25,33 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <h4>Form Add Data Dukung</h4>
+                    <h4>Form Edit</h4>
                 </div>
-                <form action="{{ route('data_dukung.store') }}" enctype="multipart/form-data" method="post">
+                <form action="{{ route('pointer.update', $agenda->id) }}" method="post">
                     @csrf
-                    @method('POST')
+                    @method('PUT')
                     <table class="table table-outline-primary table-border">
                         <tr>
-                            <td>ID Agenda</td>
+                            <td>Agenda</td>
                             <td>
-                                <input class="form-control" value="{{ $agenda->id }}" type="text" name="agenda_id">
+                                <input class="form-control" value="{{ $agenda->agenda }}" type="text" name="agenda"
+                                    readonly>
                             </td>
                         </tr>
                         <tr>
-                            <td>Nama Data Dukung</td>
+                            <td>Tanggal</td>
                             <td>
-                                <input class="form-control" type="text" name="nama_data_dukung">
+                                <input class="form-control" value="{{ $agenda->tanggal }}" type="date" readonly
+                                    name="tanggal">
                             </td>
                         </tr>
                         <tr>
-                            <td>Keterangan</td>
+                            <td>Pointer</td>
                             <td>
-                                <input class="form-control" type="text" name="keterangan">
+                                <input type="text" value="{{ $pointer->pointer }}" name="pointer"
+                                    class="form-control">
                             </td>
                         </tr>
-                        <tr>
-                            <td>File</td>
-                            <td>
-                                <input class="form-control" type="file" name="file">
-                            </td>
-                        </tr>
-
-
                         <tr>
                             <td>&nbsp;</td>
                             <td>

@@ -9,4 +9,5 @@ class Datadukung extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
 }

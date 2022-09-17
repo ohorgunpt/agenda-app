@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agenda;
 use App\Models\Datadukung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -17,8 +18,8 @@ class DatadukungController extends Controller
     public function index()
     {
         //Halaman data dukung
-        $datadukung = Datadukung::all();
-        return view ('data_dukung.index',compact('datadukung'));
+        $datadukung =  Datadukung::all();
+        return view('data_dukung.index', compact('datadukung'));
     }
 
     /**
@@ -26,10 +27,11 @@ class DatadukungController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $id)
     {
         ///redirect to create page
-        return view('data_dukung.create');
+        $agenda = Agenda::findOrFail($id);
+        return view('data_dukung.create', compact('agenda'));
     }
 
     /**

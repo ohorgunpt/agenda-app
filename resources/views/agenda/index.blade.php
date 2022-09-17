@@ -53,6 +53,15 @@
                                                       <a href="{{ route('sambutan.input', $a->id) }}"
                                                           class="btn btn-icon icon-left btn-warning"
                                                           title="Tambah Sambutan">Tambah Sambutan</a>
+                                                      <a href="{{ route('pointer.input', $a->id) }}"
+                                                          class="btn btn-icon icon-left btn-warning"
+                                                          title="Tambah Pointer">Tambah Pointers</a>
+                                                      <a href="{{ route('data_dukung.create', $a->id) }}"
+                                                            class="btn btn-icon icon-left btn-warning"
+                                                            title="Tambah Data Dukung">Tambah Data Dukung</a>
+                                                     <a href="{{ route('data_dukung.index', $a->id) }}"
+                                                                class="btn btn-icon icon-left btn-warning"
+                                                                title="List Data Dukung">List Data Dukung</a>
                                                       <a href="{{ route('agenda.destroy', $a->id) }}"
                                                           class="btn btn-danger" title="Hapus"><i
                                                               class="fas fa-trash"></i></a>

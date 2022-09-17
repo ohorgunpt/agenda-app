@@ -14,7 +14,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            
+                            <a href="{{ route('data_dukung.create') }}" class="btn btn-primary">Add Data Dukung</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-border">
@@ -24,7 +24,6 @@
                                         <th>Nama Data Dukung</th>
                                         <th>Keterangan</th>
                                         <th>ID Agenda</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -34,14 +33,7 @@
                                         <td>{{ $d->nama_data_dukung }}</td>
                                         <td>{{ $d->keterangan }}</td>
                                         <td>{{ $d->agenda_id }}</td>
-                                        {{-- <td>{{ $d->tipebalai->nama_tipe }}</td> --}}
-                                        <td>
-                                            <a href="storage/{{$d->file}}" class="btn btn-info" title="File"><i class="far fa-file"></i></a>
-                                            {{-- <a href="{{ route('balai.edit', $d->id) }}" class="btn btn-warning" title="Edit"><i class="fas fa-edit"></i></a> --}}
-                                            <a href="{{ route('datadukung.destroy', $d->id) }}" class="btn btn-danger" title="Hapus"><i class="fas fa-trash"></i></a>
-                                        </td>
                                     </tr>
-
                                     @endforeach
 
                                 </tbody>
