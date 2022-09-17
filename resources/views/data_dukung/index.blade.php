@@ -41,9 +41,7 @@
                                             <a href="{{ route('datadukung.destroy', $d->id) }}" class="btn btn-danger" title="Hapus"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
-
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>
