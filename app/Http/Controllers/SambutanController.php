@@ -21,10 +21,12 @@ class SambutanController extends Controller
         $sambutan = Sambutan::where('id', $agenda->id)->first();//select sambutan where id = agenda_id
         return view('sambutan.add', compact('agenda', 'sambutan'));
     }
-    public function index()
+    public function index($id)
     {
         //
-        return view('sambutan.index');
+        $agenda = Agenda::findOrFail($id);
+        $sambutan = Sambutan::where('id', $agenda->id)->first();//select sambutan where id = agenda_id
+        return view('sambutan.index', compact('sambutan'));
     }
 
     /**

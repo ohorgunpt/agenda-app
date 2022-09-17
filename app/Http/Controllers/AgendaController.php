@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agenda;
+use App\Models\Datadukung;
 use Illuminate\Http\Request;
 use App\Models\Unit;
 use App\Models\Sambutan;
@@ -103,6 +104,15 @@ class AgendaController extends Controller
     public function show(Agenda $agenda)
     {
         //
+    }
+
+    public function showdetail($id)
+    {
+
+        $datadukung = Datadukung::all();
+        $agenda = Agenda::findOrFail($id);
+        $sambutan = Sambutan::where('id', $agenda->id)->first();
+        return view('agenda.showdetail', compact('datadukung','agenda','sambutan'));
     }
 
     /**

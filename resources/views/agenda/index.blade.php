@@ -48,20 +48,23 @@
                                                   <td>{{ $a->status }}</td>
                                                   <td>{{ $a->unit_id }}</td>
                                                   <td>
-                                                      <a href="{{ route('agenda.edit', $a->id) }}"
-                                                          class="btn btn-warning" title="Edit">Edit Agenda</a>
+                                                      <a href="{{ route('agenda.edit', $a->id) }}" class="btn btn-warning"
+                                                          title="Edit"><i class="fas fa-edit"></i></a>
                                                       <a href="{{ route('sambutan.input', $a->id) }}"
                                                           class="btn btn-icon icon-left btn-warning"
-                                                          title="Tambah Sambutan">Tambah Sambutan</a>
+                                                          title="Tambah Sambutan"><i class="fas fa-swatchbook"></i></a>
                                                       <a href="{{ route('pointer.input', $a->id) }}"
                                                           class="btn btn-icon icon-left btn-warning"
                                                           title="Tambah Pointer">Tambah Pointers</a>
                                                       <a href="{{ route('data_dukung.create', $a->id) }}"
-                                                            class="btn btn-icon icon-left btn-warning"
-                                                            title="Tambah Data Dukung">Tambah Data Dukung</a>
-                                                     <a href="{{ route('data_dukung.index', $a->id) }}"
-                                                                class="btn btn-icon icon-left btn-warning"
-                                                                title="List Data Dukung">List Data Dukung</a>
+                                                          class="btn btn-icon icon-left btn-warning"
+                                                          title="Tambah Data Dukung">Tambah Data Dukung</a>
+                                                      <a href="{{ route('data_dukung.index', $a->id) }}"
+                                                          class="btn btn-icon icon-left btn-warning"
+                                                          title="List Data Dukung">List Data Dukung</a>
+
+                                                      <a href="{{ route('agenda.showdetail', $a->id) }}" class="btn btn-primary"
+                                                          title="Detail"><i class="fas fa-meh-rolling-eyes"></i></a>
                                                       <a href="{{ route('agenda.destroy', $a->id) }}"
                                                           class="btn btn-danger" title="Hapus"><i
                                                               class="fas fa-trash"></i></a>
