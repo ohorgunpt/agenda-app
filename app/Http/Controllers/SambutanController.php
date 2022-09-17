@@ -56,10 +56,14 @@ class SambutanController extends Controller
      * @param  \App\Models\sambutan  $sambutan
      * @return \Illuminate\Http\Response
      */
-    public function show(sambutan $sambutan)
+    public function show($id)
     {
-        //
+        $agenda_id = Agenda::findOrFail($id);
+        $sambutan = Sambutan::where('id', $agenda_id->id)->first();
+        return view('sambutan.detail',compact('sambutan', 'agenda_id'));
     }
+
+
 
     /**
      * Show the form for editing the specified resource.

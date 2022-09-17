@@ -21,13 +21,12 @@
                     <table class="table table-bordered">
                         <tr>
                             <td class="text-center">
-                                <a href="#" class="btn btn-primary btn-lg-8">POINTER</a>
-
+                                <a href="{{ route('pointer.show', $pointer->id) }}"
+                                    class="btn btn-primary btn-lg-8">POINTER</a>
                             </td>
                             <td class="text-center">
-                                <a href="{{ route('agenda.showsambutan') }}"
+                                <a href="{{ route('sambutan.show', $sambutan->id) }}"
                                     class="btn btn-primary btn-lg-8">SAMBUTAN</a>
-
                             </td>
                         </tr>
                     </table>
@@ -39,15 +38,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($datadukung as $dk)
+                            @foreach ($datadukungagenda as $item)
                                 <tr>
-                                    <td>{{ $dk->nama_data_dukung }}</td>
-                                    <td> <a href="{{ Storage::url($dk->file) }}" class="btn btn-info" title="File"><i
-                                                class="fas fa-edit"></i></a>
+                                    <td>{{ $item->nama_data_dukung }}</td>
+                                    <td> <a href="{{ Storage::url($item->file) }}"
+                                            class="btn btn-info" title="File"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
                 </div>
