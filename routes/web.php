@@ -48,7 +48,7 @@ Route::get('agenda/destroy/{id}', [\App\Http\Controllers\AgendaController::class
 
 //Route to Data Dukung
 Route::resource('data_dukung', \App\Http\Controllers\DatadukungController::class);
-
+Route::get('datadukung/{id}',[\App\Http\Controllers\DatadukungController::class,'showdatadukung'])->name('datadukung.showdatadukung');
 //Route to Data Dukung
 Route::resource('storage', \App\Http\Controllers\DatadukungController::class);
 
@@ -65,6 +65,7 @@ Route::resource('index', \App\Http\Controllers\SambutanController::class);
 
 //Route to Pointer
 Route::resource('pointer', \App\Http\Controllers\PointerController::class);
+
 Route::get('pointer/input/{id}', [\App\Http\Controllers\PointerController::class,'input'])->name('pointer.input');
 //Route to Pointer
 Route::resource('index', \App\Http\Controllers\PointerController::class);
@@ -74,8 +75,12 @@ Route::resource('index', \App\Http\Controllers\PointerController::class);
 Route::resource('data_dukung', \App\Http\Controllers\DatadukungController::class);
 Route::get('data_dukung/create/{id}', [\App\Http\Controllers\DatadukungController::class,'create'])->name('data_dukung.create');
 //Route to Pointer
-Route::resource('list', \App\Http\Controllers\DatadukungController::class);
+// Route::resource('list', \App\Http\Controllers\DatadukungController::class);
 
 
 
 
+//route test
+Route::get('test',function(){
+
+});

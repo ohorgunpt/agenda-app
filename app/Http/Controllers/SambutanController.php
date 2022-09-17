@@ -59,7 +59,7 @@ class SambutanController extends Controller
     public function show($id)
     {
         $agenda_id = Agenda::findOrFail($id);
-        $sambutan = Sambutan::where('id', $agenda_id->id);
+        $sambutan = Sambutan::where('id', $agenda_id->id)->first();
         return view('sambutan.detail',compact('sambutan', 'agenda_id'));
     }
 

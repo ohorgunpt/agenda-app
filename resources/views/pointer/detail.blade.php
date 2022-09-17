@@ -1,13 +1,13 @@
 @extends('master')
 
 @section('title')
-    <title>Detail Sambutan</title>
+    <title>Detail Pointer</title>
 @endsection
 
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Detail Sambutan</h1>
+            <h1>Detail Pointer</h1>
         </div>
         <div class="section-body">
             <div class="card">
@@ -18,7 +18,7 @@
                     <h6>{{ $agenda_id->mulai }}</h6>
                     </p>
                     <blockquote>
-                        {{ $sambutan->sambutan }}
+                        {{ $pointer->pointer }}
                     </blockquote>
                 </div>
             </div>

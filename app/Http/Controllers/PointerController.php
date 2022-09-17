@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agenda;
-use App\Models\pointer;
+use App\Models\Pointer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use DB;
@@ -54,9 +54,11 @@ class PointerController extends Controller
      * @param  \App\Models\pointer  $pointer
      * @return \Illuminate\Http\Response
      */
-    public function show(pointer $pointer)
+    public function show($id)
     {
-        //
+        $agenda_id = Agenda::findOrFail($id);
+        $pointer = Pointer::where('id', $agenda_id->id)->first();
+        return view('pointer.detail',compact('pointer', 'agenda_id'));
     }
 
     /**

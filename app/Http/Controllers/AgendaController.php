@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Unit;
 use App\Models\Sambutan;
 use App\Models\Pointer;
+use Illuminate\Support\Facades\DB;
 
 class AgendaController extends Controller
 {
@@ -108,11 +109,18 @@ class AgendaController extends Controller
 
     public function showdetail($id)
     {
-
-        $datadukung = Datadukung::all();
         $agenda = Agenda::findOrFail($id);
         $sambutan = Sambutan::where('id', $agenda->id)->first();
-        return view('agenda.showdetail', compact('datadukung','agenda','sambutan'));
+        $pointer = Pointer::where('id', $agenda->id)->first();
+        // $datadukungagenda = Datadukung::where('id', $agenda->id)->first();
+        // dd($datadukung);
+        $datadukungagenda = DB::table('agendas')
+                        ->select('agendas.id','agendas.agenda','datadukungs.agenda_id','datadukungs.nama_data_dukung','datadukungs.file')
+                        ->leftJoin('datadukungs','datadukungs.agenda_id','=','agendas.id')
+                        ->where('datadukungs.agenda_id','=',$agenda->id)
+                        ->get();
+                        // dd($datadukungagenda);
+        return view('agenda.showdetail', compact('datadukungagenda','agenda','sambutan','pointer'));
     }
 
     /**

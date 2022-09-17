@@ -59,7 +59,7 @@
                                                       <a href="{{ route('data_dukung.create', $a->id) }}"
                                                           class="btn btn-icon icon-left btn-warning"
                                                           title="Tambah Data Dukung">Tambah Data Dukung</a>
-                                                      <a href="{{ route('data_dukung.index', $a->id) }}"
+                                                      <a href="{{ route('datadukung.showdatadukung', $a->id) }}"
                                                           class="btn btn-icon icon-left btn-warning"
                                                           title="List Data Dukung">List Data Dukung</a>
 

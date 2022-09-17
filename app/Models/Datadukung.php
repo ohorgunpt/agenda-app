@@ -10,4 +10,14 @@ class Datadukung extends Model
     use HasFactory;
     protected $guarded = [];
 
+    /**
+     * Get the user that owns the Datadukung
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function datadukung()
+    {
+        return $this->belongsTo(Agenda::class, 'agenda_id', 'id');
+    }
+
 }
