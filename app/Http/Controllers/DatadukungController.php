@@ -17,14 +17,14 @@ class DatadukungController extends Controller
      */
     public function index()
     {
-        // $agenda_id = Agenda::findOrFail();
+        $agenda_id = Agenda::findOrFail();
         //Halaman data dukung
         // $datadukung =  Datadukung::where('id', $agenda_id->id)->first();
-        // $listdatadukung = DB::table('agendas')
-        //                 ->select('agendas.id','agendas.agenda','datadukungs.agenda_id','datadukungs.nama_data_dukung','datadukungs.file')
-        //                 ->leftJoin('datadukungs','datadukungs.agenda_id','=','agendas.id')
-        //                 ->where('datadukungs.agenda_id','=',$agenda_id->id)
-        //                 ->get();
+        $listdatadukung = DB::table('agendas')
+                        ->select('agendas.id','agendas.agenda','datadukungs.agenda_id','datadukungs.nama_data_dukung','datadukungs.file')
+                        ->leftJoin('datadukungs','datadukungs.agenda_id','=','agendas.id')
+                        ->where('datadukungs.agenda_id','=',$agenda_id->id)
+                        ->get();
         return view('data_dukung.index', compact('listdatadukung', 'agenda_id'));
     }
     public function showdatadukung($id)

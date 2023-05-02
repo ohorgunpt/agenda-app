@@ -78,7 +78,8 @@ Route::get('data_dukung/create/{id}', [\App\Http\Controllers\DatadukungControlle
 // Route::resource('list', \App\Http\Controllers\DatadukungController::class);
 
 
-
+//Route search
+Route::get('/search', [AgendaController::class, 'search'])->name('search');
 
 //route test
 Route::get('test',function(){

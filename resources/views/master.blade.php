@@ -17,6 +17,13 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+  <script src="https://cdn.tiny.cloud/1/711z61q1t3yv276na2clp5fpj675utxiqkaypwc79xoq0cwc/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+	<script>
+		tinymce.init({
+			selector: '#mytextarea'
+		});
+	</script>
 </head>
 
 <body>
