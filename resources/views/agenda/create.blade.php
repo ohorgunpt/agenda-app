@@ -28,11 +28,11 @@
                     @csrf
                     @method('POST')
 
-                    <table class="table table-responsive table-outline-primary table-border">
+                    <table class="table table-responsive  table-bordered" width="100%">
                         <tr>
                             <td>Agenda</td>
                             <td>
-                                <input class="form-control" type="text" name="agenda" placeholder="Agenda">
+                                <input class="form-control" width="100%" type="text" name="agenda" placeholder="Agenda">
                             </td>
                         </tr>
                         <tr>
