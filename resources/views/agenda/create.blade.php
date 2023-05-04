@@ -24,78 +24,79 @@
                 <div class="card-header">
                     <h4>Form Add Agenda</h4>
                 </div>
-                <form action="{{ route('agenda.store') }}" method="post">
-                    @csrf
-                    @method('POST')
+                <div class="card-body">
+                    <form action="{{ route('agenda.store') }}" method="post">
+                        @csrf
+                        @method('POST')
 
-                    <table class="table table-responsive  table-bordered" width="100%">
-                        <tr>
-                            <td>Agenda</td>
-                            <td>
-                                <input class="form-control" width="100%" type="text" name="agenda" placeholder="Agenda">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Kategori</td>
-                            <td>
-                                <input class="form-control" type="text" name="kategori" placeholder="Kategori">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tanggal</td>
-                            <td>
-                                <input class="form-control" type="date" name="tanggal">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mulai</td>
-                            <td>
+                        <div class="form-group">
+                            <label >Agenda</label>
+                            <input type="text" name="agenda" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label >Kategori</label>
+                            <input type="text" name="kategori" class="form-control">
+                        </div>
+                        <div class="form-group mx-sm-3 row">
+                            <div class="col-xs-4 mb-3">
+                                <label for="">Tanggal</label>
+                                <input type="date" name="tanggal" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group mx-sm-3 row">
+                            <div class="col-xs-4 mb-3">
+                            <label >Mulai</label>
                                 <input class="form-control" type="time" name="mulai" placeholder="Mulai">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Selesai</td>
-                            <td>
+                            </div>
+                            </div>
+                            <div class="form-group mx-sm-3 row">
+                                <div class="col-xs-4 mb-3">
+                                <label >Selesai</label>
                                 <input class="form-control" type="time" name="selesai" placeholder="Selesai">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Pendamping</td>
-                            <td>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label >Pendamping</label>
                                 <input class="form-control" type="text" name="pendamping" placeholder="Pendamping">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Keterangan</td>
-                            <td>
+                            </div>
+                            <div class="form-group">
+                                <label >Keterangan</label>
                                 <input class="form-control" type="text" name="keterangan" placeholder="Keterangan">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Status</td>
-                            <td>
+                            </div>
+                            <div class="form-group">
+                                <label >Status</label>
                                 <input class="form-control" type="text" name="status" placeholder="Status">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ID Unit</td>
-                            <td>
+                            </div>
+
+                            <div class="question">
+                                <p>Sifat<span class="required"></span></p>
+                                <div class="question-answer">
+                                  <label><input type="radio" value="Umum" name="sifat" required/> <span>Umum</span></label>
+                                  <label><input type="radio" value="Rahasia" name="sifat" required/> <span>Rahasia</span></label>
+                                  <label><input type="radio" value="Pribadi" name="sifat" required/> <span>Pribadi</span></label>
+                                  <label><input type="radio" value="Unclassified" name="sifat" required/> <span>Unclassified</span></label>
+                                </div>
+                               </div>
+
+                            <div class="form-group">
+                                <label >ID Unit</label>
                                 <select name="unit_id" class="form-control">
+                                    <option selected>Pilih Kategori</option>
                                     @foreach ($unit as $units)
                                         <option value="{{ $units->id }}">{{ $units->nama_unit }}</option>
                                     @endforeach
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>
-                                <button type="submit" class="btn btn-primary">Save Data</button>
-                            </td>
-                        </tr>
+                            </div>
 
-                    </table>
-                </form>
+                        <div class="form-group">
+
+
+                        <button type="submit" class="btn btn-primary">Save Data</button>
+                            </div>
+
+                    </form>
+                </div>
+
             </div>
         </div>
 
