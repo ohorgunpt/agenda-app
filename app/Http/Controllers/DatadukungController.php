@@ -17,15 +17,15 @@ class DatadukungController extends Controller
      */
     public function index()
     {
-        // $agenda_id = Agenda::findOrFail();
+        $agenda_id = Agenda::get();
         //Halaman data dukung
-        // $datadukung =  Datadukung::where('id', $agenda_id->id)->first();
-        // $listdatadukung = DB::table('agendas')
-        //                 ->select('agendas.id','agendas.agenda','datadukungs.agenda_id','datadukungs.nama_data_dukung','datadukungs.file')
-        //                 ->leftJoin('datadukungs','datadukungs.agenda_id','=','agendas.id')
-        //                 ->where('datadukungs.agenda_id','=',$agenda_id->id)
-        //                 ->get();
-        return view('data_dukung.index', compact('listdatadukung', 'agenda_id'));
+        $datadukung =  Datadukung::where('id', $agenda_id->id)->first();
+        $listdatadukung = DB::table('agendas')
+                        ->select('agendas.id','agendas.agenda','datadukungs.agenda_id','datadukungs.nama_data_dukung','datadukungs.file')
+                        ->leftJoin('datadukungs','datadukungs.agenda_id','=','agendas.id')
+                        ->where('datadukungs.agenda_id','=',$agenda_id->id[0])
+                        ->get();
+        return view('data_dukung.index', compact('listdatadukung', 'datadukung'));
     }
     public function showdatadukung($id)
     {
@@ -83,7 +83,8 @@ class DatadukungController extends Controller
         if(!$input){
             return redirect()->back()->with('Error Ada yang salah');
         }else{
-            return redirect()->route('data_dukung.index')->with('success', 'Data berhasil ditambahkan');
+            // return redirect()->route('datadukung.showdatadukung')->with('success', 'Data berhasil ditambahkan');
+            return redirect()->route('agenda.index');
         }
 
     }

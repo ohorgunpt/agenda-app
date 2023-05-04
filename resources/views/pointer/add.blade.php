@@ -48,8 +48,11 @@
                         <tr>
                             <td>Pointer</td>
                             <td>
-                                <input type="text" value="{{ $pointer->pointer }}" name="pointer"
-                                    class="form-control">
+                                {{-- <input type="text" value="{{ $pointer->pointer }}" name="pointer"
+                                    class="form-control"> --}}
+                                    <textarea id="mytextarea" class="form-control" style="height:150px" name="pointer">
+                                        {{ $pointer->pointer }}
+                                     </textarea>
                             </td>
                         </tr>
                         <tr>

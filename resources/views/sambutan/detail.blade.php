@@ -18,7 +18,9 @@
                     <h6>{{ $agenda_id->mulai }}</h6>
                     </p>
                     <blockquote>
+                        <textarea style="height:5000px">
                         {{ $sambutan->sambutan }}
+                        </textarea>
                     </blockquote>
                 </div>
             </div>

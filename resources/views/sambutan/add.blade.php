@@ -48,8 +48,10 @@
                         <tr>
                             <td>Sambutan</td>
                             <td>
-                                <input type="text" value="{{ $sambutan->sambutan }}" name="sambutan"
-                                    class="form-control">
+                                <textarea id="mytextarea" class="form-control" style="height:150px" name="sambutan">
+                                   {{ $sambutan->sambutan }}
+                                </textarea>
+
                             </td>
                         </tr>
                         <tr>

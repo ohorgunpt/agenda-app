@@ -17,10 +17,18 @@ class AgendaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->has('search')){
+            // $agenda = Agenda::where('agenda','LIKE','%'.$request->search.'%');
+            $agenda = Agenda::where('agenda','LIKE','%'.$request->search.'%');
+            // $agenda = DB::table('agendas')->where('agenda','LIKE','%'.$request->search.'%');
+        }else{
+            $agenda = Agenda::all();
+        }
+
         //kita test master bladenya
-        $agenda = Agenda::all();
+
         return view('agenda.index', compact('agenda'));
     }
 
@@ -189,5 +197,11 @@ class AgendaController extends Controller
         Agenda::destroy($id);
         //redirect to index agenda
         return redirect()->route('agenda.index')->with('success', 'Data berhasil dihapus');
+    }
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+        $agendas = Agenda::where('tanggal', 'like', "%" . $keyword . "%")->paginate(5);
+        return view('agenda.index_pencarian', compact('agendas'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }

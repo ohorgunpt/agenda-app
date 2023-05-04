@@ -17,7 +17,7 @@
             <li><a class="nav-link" href="{{ route('unit.index') }}">Data Unit</a></li>
             <li><a class="nav-link" href="{{ route('personel.index') }}">Data Personel</a></li>
             <li><a class="nav-link" href="{{ route('agenda.index') }}">Data Agenda</a></li>
-            <li><a class="nav-link" href="{{ route('data_dukung.index') }}">Data Dukung</a></li>
+            {{-- <li><a class="nav-link" href="{{ route('data_dukung.index') }}">Data Dukung</a></li> --}}
             <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
           </ul>
         </li>
