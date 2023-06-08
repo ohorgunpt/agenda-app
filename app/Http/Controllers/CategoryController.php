@@ -12,11 +12,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
+
         //call category data
         $category = Category::all(); //select * from category
 
         //redirect to category page
         return view('category.index');
+
+        //
     }
 
     /**
@@ -26,8 +29,10 @@ class CategoryController extends Controller
     {
         //
 
+
         //redirect to create category page
         return view('category.create');
+
     }
 
     /**
@@ -36,6 +41,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+
         $this->validate($request, ['namakategori'=>'required']);
         $input = $request->all();
         $save = Category::create($input);
@@ -44,6 +50,7 @@ class CategoryController extends Controller
         } else {
             return redirect()->back();
         }
+
 
     }
 
