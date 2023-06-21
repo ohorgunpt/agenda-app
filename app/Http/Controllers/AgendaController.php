@@ -6,6 +6,9 @@ use App\Models\Agenda;
 use App\Models\Datadukung;
 use Illuminate\Http\Request;
 use App\Models\Unit;
+use App\Models\Category;
+use App\Models\Personel;
+use App\Models\User;
 use App\Models\Sambutan;
 use App\Models\Pointer;
 use Illuminate\Support\Facades\DB;
@@ -40,8 +43,11 @@ class AgendaController extends Controller
     public function create()
     {
         //
+        $category=Category::all();//select * from kategori
         $unit = Unit::all(); //select * from unit
-        return view('agenda.create', compact('unit'));
+        $personel = Personel::all(); //select * from Personel
+        $user = User::all(); //select * from Personel, tulisan 'User' dari model 'User'
+        return view('agenda.create', compact('unit','category', 'personel', 'user'));
     }
 
     /**

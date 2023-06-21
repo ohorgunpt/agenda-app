@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string ('namakategori')->nullable();
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+
+            
         });
     }
 
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('table_fkunit_to_users');
     }
 };

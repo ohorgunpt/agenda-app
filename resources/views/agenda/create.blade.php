@@ -33,9 +33,15 @@
                             <label >Agenda</label>
                             <input type="text" name="agenda" class="form-control">
                         </div>
+
                         <div class="form-group">
                             <label >Kategori</label>
-                            <input type="text" name="kategori" class="form-control">
+                            <select name="kategori" class="form-control">
+                                <option selected>Pilih Kategori</option>
+                                @foreach ($category as $ct)
+                                    <option value="{{ $ct->id }}">{{ $ct->namakategori }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group mx-sm-3 row">
                             <div class="col-xs-4 mb-3">
@@ -55,10 +61,26 @@
                                 <input class="form-control" type="time" name="selesai" placeholder="Selesai">
                                 </div>
                             </div>
-                            <div class="form-group">
+
+                            {{-- <div class="form-group">
                                 <label >Pendamping</label>
-                                <input class="form-control" type="text" name="pendamping" placeholder="Pendamping">
+                                <select name="pendamping" class="form-control">
+                                    <option selected>Pilih Kategori</option>
+                                    @foreach ($personel as $pndamping)
+                                        <option value="{{ $pndamping->id }}">{{ $pndamping->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div> --}}
+                            <div class="form-group">
+                                <label >Pendamping dari user</label>
+                                <select name="pendamping" class="form-control">
+                                    <option selected>Pilih Pendamping</option>
+                                    @foreach ($user as $pendamping)
+                                        <option value="{{ $pendamping->id }}">{{ $pendamping->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
+
                             <div class="form-group">
                                 <label >Keterangan</label>
                                 <input class="form-control" type="text" name="keterangan" placeholder="Keterangan">
@@ -81,7 +103,7 @@
                             <div class="form-group">
                                 <label >ID Unit</label>
                                 <select name="unit_id" class="form-control">
-                                    <option selected>Pilih Kategori</option>
+                                    <option selected>Pilih Unit</option>
                                     @foreach ($unit as $units)
                                         <option value="{{ $units->id }}">{{ $units->nama_unit }}</option>
                                     @endforeach

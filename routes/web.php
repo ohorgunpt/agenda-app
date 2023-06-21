@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\SuperAdmin;
+// use App\Http\Middleware\TuKepala;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +19,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Route group
+//Route to Agenda
+// Route::resource('agenda', \App\Http\Controllers\AgendaController::class);
+Route::get('agenda-index', [\App\Http\Controllers\AgendaController::class,'index'])->name('agenda.index');
+Route::get('agenda', [App\Http\Controllers\AgendaController::class,'create'])->name('agenda.create');
+Route::post('category', [App\Http\Controllers\CategoryController::class,'store'])->name('category.store');
+Route::get('agenda/{id}/edit', [App\Http\Controllers\AgendaController::class,'edit'])->name('agenda.edit');
+Route::post('agenda-store', [App\Http\Controllers\AgendaController::class,'store'])->name('agenda.store');
+Route::put('agenda/{id}/update', [App\Http\Controllers\AgendaController::class,'update'])->name('agenda.update');
+Route::get('agenda-detail/{id}',[\App\Http\Controllers\AgendaController::class,'showdetail'])->name('agenda.showdetail');
+//oute untuk destroy Agenda
+Route::get('agenda/destroy/{id}', [\App\Http\Controllers\AgendaController::class,'destroy'])->name('agenda.destroy');
+
+
 //Route baru
 Route::get('hello', function() {
     return '<h1>Belajar Laravel</h1>';
 });
 
 //Route to controller
-Route::get('index', [\App\Http\Controllers\AgendaController::class, 'index']);
+// Route::get('index', [\App\Http\Controllers\AgendaController::class, 'index']);
 
 //Route to  master
 Route::resource('agendatemplate', \App\Http\Controllers\AgendaController::class);
@@ -40,11 +56,6 @@ Route::resource('personel', \App\Http\Controllers\PersonelController::class);
 //oute untuk destroy unit
 Route::get('personel/destroy/{id}', [\App\Http\Controllers\PersonelController::class,'destroy'])->name('personel.destroy');
 
-//Route to Agenda
-Route::resource('agenda', \App\Http\Controllers\AgendaController::class);
-Route::get('agenda-detail/{id}',[\App\Http\Controllers\AgendaController::class,'showdetail'])->name('agenda.showdetail');
-//oute untuk destroy Agenda
-Route::get('agenda/destroy/{id}', [\App\Http\Controllers\AgendaController::class,'destroy'])->name('agenda.destroy');
 
 //Route to Data Dukung
 Route::resource('data_dukung', \App\Http\Controllers\DatadukungController::class);
@@ -82,9 +93,9 @@ Route::get('data_dukung/create/{id}', [\App\Http\Controllers\DatadukungControlle
 Route::get('/search', [AgendaController::class, 'search'])->name('search');
 
 //route ketegory
-Route::get('category', [App\Http\Controllers\CategoryController::class,'index'])->name('category.index');
-Route::get('cat-create', [App\Http\Controllers\CategoryController::class,'create'])->name('category.create');
-Route::post('category', [App\Http\Controllers\CategoryController::class,'store'])->name('category.store');
+Route::get('category', [App\Http\Controllers\CategoryController::class,'index'])->name('kategori.index');
+Route::get('cat-create', [App\Http\Controllers\CategoryController::class,'create'])->name('kategori.create');
+Route::post('category', [App\Http\Controllers\CategoryController::class,'store'])->name('kategori.store');
 //route test
 Route::get('test',function(){
 

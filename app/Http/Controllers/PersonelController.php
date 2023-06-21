@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Personel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Unit;
 use DB;
 
 class PersonelController extends Controller
@@ -28,8 +29,10 @@ class PersonelController extends Controller
      */
     public function create()
     {
+        //ambil data unit
+        $unit = Unit::all();
         //redirect to create page
-        return view('personel.create');
+        return view('personel.create', compact('unit'));
     }
 
     /**

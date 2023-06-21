@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('pendamping');
             $table->string('keterangan');
             $table->string('status');
+            $table->string('sifat');
             $table->foreignId('unit_id')->constraint();
             $table->timestamps();
         });
