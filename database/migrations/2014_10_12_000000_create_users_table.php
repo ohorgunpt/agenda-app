@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('nip')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('nomor_unit')->nullable();
+            // $table->string('nomor_unit')->nullable();
             $table->string('password');
             $table->enum('role', ['superadmin', 'kepala_bpom', 'plt_plh_kepala_bpom',
                                     'sestama', 'plt_plh_sestama', 'irtama', 'plt_plh_irtama', 'deputi_1', 'plt_plh_deputi_1',

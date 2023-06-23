@@ -12,6 +12,8 @@ use App\Models\User;
 use App\Models\Sambutan;
 use App\Models\Pointer;
 use Illuminate\Support\Facades\DB;
+use Auth;
+
 
 class AgendaController extends Controller
 {
@@ -27,7 +29,7 @@ class AgendaController extends Controller
             $agenda = Agenda::where('agenda','LIKE','%'.$request->search.'%');
             // $agenda = DB::table('agendas')->where('agenda','LIKE','%'.$request->search.'%');
         }else{
-            $agenda = Agenda::all();
+            $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
         }
 
         //kita test master bladenya
@@ -66,7 +68,7 @@ class AgendaController extends Controller
             'tanggal' => 'required',
             'mulai' => 'required',
             'selesai' => 'required',
-            'pendamping' => 'required',
+            // 'pendamping' => 'required',
             'keterangan' => 'required',
             'status' => 'required',
             'unit_id' => 'required'
@@ -170,7 +172,7 @@ class AgendaController extends Controller
             'tanggal' => 'required',
             'mulai' => 'required',
             'selesai' => 'required',
-            'pendamping' => 'required',
+            // 'pendamping' => 'required',
             'keterangan' => 'required',
             'status' => 'required',
             'unit_id' => 'required'
@@ -181,7 +183,7 @@ class AgendaController extends Controller
         $agenda->tanggal = $request->input('tanggal');
         $agenda->mulai = $request->input('mulai');
         $agenda->selesai = $request->input('selesai');
-        $agenda->pendamping = $request->input('pendamping');
+        // $agenda->pendamping = $request->input('pendamping');
         $agenda->keterangan = $request->input('keterangan');
         $agenda->status = $request->input('status');
         $agenda->unit_id = $request->input('unit_id');

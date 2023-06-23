@@ -49,8 +49,8 @@
                                 use App\Models\Unit;
                                 $unit = Unit::all();
                                 @endphp
-                                <select name="pendamping" class="form-control">
-                                    <option selected>Pilih Pendamping</option>
+                                <select name="unit_id" class="form-control">
+                                    <option value ='0' selected>Pilih unit</option>
                                     @foreach ($unit as $it)
                                         <option value="{{ $it->id }}">{{ $it->nama_unit }}</option>
                                     @endforeach

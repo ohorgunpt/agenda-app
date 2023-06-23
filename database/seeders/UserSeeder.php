@@ -21,12 +21,15 @@ class UserSeeder extends Seeder
                 'email'=>'superadmin@seeder.com',
                 'password'=>Hash::make('password'),
                 'role'=>'superadmin',
+                'unit_id'  =>1,
             ],
             [
                 'name'=>'tukepala',
                 'email'=>'tukepala@seeder.com',
                 'password'=>Hash::make('password'),
                 'role'=>'tu_kepala',
+                'unit_id' =>2,
+
             ],
         ];
 

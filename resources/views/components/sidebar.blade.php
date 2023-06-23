@@ -18,12 +18,12 @@
             <li><a class="nav-link" href="{{ route('unit.index') }}">Data Unit</a></li>
             <li><a class="nav-link" href="{{ route('personel.index') }}">Data Personel</a></li>
             <li><a class="nav-link" href="{{route('agenda.index')}}">Data Agenda</a></li>
-            <li><a class="nav-link" href="{{route('kategori.index')}}">Data Kategori</a></li>
+            <li><a class="nav-link" href="{{route('category.index')}}">Data Kategori</a></li>
             {{-- <li><a class="nav-link" href="{{ route('data_dukung.index') }}">Data Dukung</a></li> --}}
 
             @elseif (Auth::user()->role=='tu_kepala')
             <li><a class="nav-link" href="{{route('agenda.index')}}">Data Agenda</a></li>
-            <li><a class="nav-link" href="{{route('kategori.index')}}">Data Kategori</a></li>
+            <li><a class="nav-link" href="{{route('category.index')}}">Data Kategori</a></li>
             <li><a href="" class="nav-link">Page baru</a></li>
 
             @elseif (Auth::user()->role =='dsp')

@@ -22,22 +22,14 @@
                                     <th>Kategori</th>
                                 </tr>
                             </thead>
-                            {{-- <tbody>
-                                @foreach ($agenda as $a)
+                            <tbody>
+                                @foreach ($category as $a)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ Carbon\Carbon::parse($a->tanggal)->translatedFormat("l, d F Y") }}</td>
-                                        <td>{{ $a->agenda }}</td>
-                                        <td>{{ $a->kategori }}</td>
-                                        <td>{{ $a->mulai }}</td>
-                                        <td>{{ $a->selesai }}</td>
-                                        <td>{{ $a->pendamping }}</td>
-                                        <td>{{ $a->keterangan }}</td>
-                                        <td>{{ $a->status }}</td>
-                                        <td>{{ $a->unit_id }}</td>
+                                        <td>{{ $a->namakategori}}</td>
                                         <td>
 
-                                            <a href="{{ route('agenda.edit', $a->id) }}" class="btn btn-warning"
+                                            {{-- <a href="{{ route('agenda.edit', $a->id) }}" class="btn btn-warning"
                                                 title="Edit"><i class="fas fa-edit"></i></a>
                                             <a href="{{ route('sambutan.input', $a->id) }}"
                                                 class="btn btn-icon icon-left btn-warning"
@@ -57,11 +49,11 @@
                                             <a href="{{ route('agenda.destroy', $a->id) }}"
                                                 class="btn btn-danger" title="Hapus"><i
                                                     class="fas fa-trash"></i></a>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
 
-                            </tbody> --}}
+                            </tbody>
                         </table>
                     </div>
                 </div>

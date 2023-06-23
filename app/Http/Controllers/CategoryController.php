@@ -17,7 +17,7 @@ class CategoryController extends Controller
         $category = Category::all(); //select * from category
 
         //redirect to category page
-        return view('kategori.index',   compact('category'));
+        return view('category.index',   compact('category'));
 
         //
     }
@@ -46,7 +46,7 @@ class CategoryController extends Controller
         $input = $request->all();
         $save = Category::create($input);
         if($save) {
-            return redirect()->route('kategori.index');
+            return redirect()->route('category.index');
         } else {
             return redirect()->back();
         }

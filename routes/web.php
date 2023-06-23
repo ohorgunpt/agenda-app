@@ -93,9 +93,9 @@ Route::get('data_dukung/create/{id}', [\App\Http\Controllers\DatadukungControlle
 Route::get('/search', [AgendaController::class, 'search'])->name('search');
 
 //route ketegory
-Route::get('category', [App\Http\Controllers\CategoryController::class,'index'])->name('kategori.index');
-Route::get('cat-create', [App\Http\Controllers\CategoryController::class,'create'])->name('kategori.create');
-Route::post('category', [App\Http\Controllers\CategoryController::class,'store'])->name('kategori.store');
+Route::get('category', [App\Http\Controllers\CategoryController::class,'index'])->name('category.index');
+Route::get('cat-create', [App\Http\Controllers\CategoryController::class,'create'])->name('category.create');
+Route::post('category', [App\Http\Controllers\CategoryController::class,'store'])->name('category.store');
 //route test
 Route::get('test',function(){
 
@@ -108,3 +108,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route tambah Pendamping
+Route::post('/pendamping', [App\Http\Controllers\AddPendampingController::class, 'addpedampings'])->name('tambahpendamping.store');

@@ -31,49 +31,88 @@
                         <tr>
                             <td>Agenda</td>
                             <td>
-                                <input class="form-control" value="{{$agenda->agenda}}" type="text" name="agenda">
+                                <input class="form-control" value="{{ $agenda->agenda }}" type="text" name="agenda">
                             </td>
                         </tr>
                         <tr>
                             <td>Kategori</td>
                             <td>
-                                <input class="form-control" value="{{$agenda->kategori}}" type="text" name="kategori">
+                                {{-- <input class="form-control" value="{{ $agenda->kategori }}" type="text" name="kategori">
+                                <select name="kategori" class="form-control"> --}}
+                                    @php
+                                        use App\Models\Category;
+                                        $category = Category::all();
+                                    @endphp
+                                    @foreach ($category as $kategori)
+                                        {{-- <option value="{{ $kategori->id }}">{{ $kategori->namakategori }}</option> --}}
+                                        <input class="form-control" type="text" name="kategori" value="{{ $kategori->namakategori }}">
+                                    @endforeach
+                                {{-- </select> --}}
                             </td>
                         </tr>
                         <tr>
                             <td>Tanggal</td>
                             <td>
-                                <input class="form-control" value="{{$agenda->tanggal}}" type="date" name="tanggal">
+                                <input class="form-control" value="{{ $agenda->tanggal }}" type="date" name="tanggal">
                             </td>
                         </tr>
                         <tr>
                             <td>Mulai</td>
                             <td>
-                                <input class="form-control" value="{{$agenda->mulai}}" type="time" name="mulai">
+                                <input class="form-control" value="{{ $agenda->mulai }}" type="time" name="mulai">
                             </td>
                         </tr>
                         <tr>
                             <td>Selesai</td>
                             <td>
-                                <input class="form-control" value="{{$agenda->selesai}}" type="time" name="selesai">
+                                <input class="form-control" value="{{ $agenda->selesai }}" type="time" name="selesai">
                             </td>
                         </tr>
                         <tr>
+                            @php
+
+                                use App\Models\User;
+                                $user = User::all();
+
+                            @endphp
+                             <input type="hidden" name="agenda_id"  value="{{$agenda->id}}">
                             <td>Pendamping</td>
                             <td>
-                                <input class="form-control" value="{{$agenda->pendamping}}" type="text" name="pendamping">
+                                <form action="{{route("tambahpendamping.store")}}" method="post">
+                                    @csrf
+                                    <select name="pendamping_id" class="form-control">
+                                        <option selected>Pilih Pendamping</option>
+                                        @foreach ($user as $pendamping)
+                                            <option value="{{ $pendamping->id }}">{{ $pendamping->name }}</option>
+                                        @endforeach
+                                    </select> | <button class="btn btn-primary">Add</button> |
+
+                                </form>
+                                <hr class="mt-4">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Pendamping</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>Keterangan</td>
                             <td>
-                                <input class="form-control" value="{{$agenda->keterangan}}" type="text" name="keterangan">
+                                <input class="form-control" value="{{ $agenda->keterangan }}" type="text"
+                                    name="keterangan">
                             </td>
                         </tr>
                         <tr>
                             <td>Status</td>
                             <td>
-                                <input class="form-control" value="{{$agenda->status}}" type="text" name="status">
+                                <input class="form-control" value="{{ $agenda->status }}" type="text" name="status">
                             </td>
                         </tr>
                         <tr>
@@ -88,7 +127,9 @@
 
                                     @endif --}}
                                     @foreach ($units as $unit)
-                                        <option value="{{ $unit->id }}" {{ $agenda->unit_id == $unit->id ? 'selected' : '' }}>{{ $unit->nama_unit }}</option>
+                                        <option value="{{ $unit->id }}"
+                                            {{ $agenda->unit_id == $unit->id ? 'selected' : '' }}>{{ $unit->nama_unit }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </td>
