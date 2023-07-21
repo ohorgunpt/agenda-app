@@ -6,9 +6,15 @@ use App\Models\Agenda;
 use App\Models\Datadukung;
 use Illuminate\Http\Request;
 use App\Models\Unit;
+use App\Models\Category;
+use App\Models\Personel;
+use App\Models\User;
 use App\Models\Sambutan;
 use App\Models\Pointer;
+use App\Models\AddPedamping;
 use Illuminate\Support\Facades\DB;
+use Auth;
+
 
 class AgendaController extends Controller
 {
@@ -19,17 +25,23 @@ class AgendaController extends Controller
      */
     public function index(Request $request)
     {
+        $units = Unit::all();
+        // $agendaForpendamping = Agenda::all();
         if($request->has('search')){
-            // $agenda = Agenda::where('agenda','LIKE','%'.$request->search.'%');
             $agenda = Agenda::where('agenda','LIKE','%'.$request->search.'%');
-            // $agenda = DB::table('agendas')->where('agenda','LIKE','%'.$request->search.'%');
+            $agenda = Agenda::where('agenda','LIKE','%'.$request->search.'%');
+            $agenda = DB::table('agendas')->where('agenda','LIKE','%'.$request->search.'%');
         }else{
-            $agenda = Agenda::all();
+            $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
+            // $agenda = Agenda::all();
         }
 
+        // $agenda = Agenda::all();
+        // $addpendamping = $agenda->pendamping();
+        // dd($addpendamping);
         //kita test master bladenya
-
-        return view('agenda.index', compact('agenda'));
+        // $agenda = Agenda::all();
+        return view('agenda.index', compact('agenda', 'units'));
     }
 
     /**
@@ -40,8 +52,11 @@ class AgendaController extends Controller
     public function create()
     {
         //
+        $category=Category::all();//select * from kategori
         $unit = Unit::all(); //select * from unit
-        return view('agenda.create', compact('unit'));
+        $personel = Personel::all(); //select * from Personel
+        $user = User::all(); //select * from Personel, tulisan 'User' dari model 'User'
+        return view('agenda.create', compact('unit','category', 'personel', 'user'));
     }
 
     /**
@@ -60,7 +75,7 @@ class AgendaController extends Controller
             'tanggal' => 'required',
             'mulai' => 'required',
             'selesai' => 'required',
-            'pendamping' => 'required',
+            // 'pendamping' => 'required',
             'keterangan' => 'required',
             'status' => 'required',
             'unit_id' => 'required'
@@ -142,11 +157,10 @@ class AgendaController extends Controller
         //passing to edit page
         $agenda = Agenda::find($id);
         $units = Unit::all();
+        // $pendamping = AddPedamping::all("agenda_id", "=", $agenda->id)->first();
         //redirect to edit page
         return view('agenda.edit', compact('agenda', 'units'));
     }
-
-
 
     /**
      * Update the specified resource in storage.
@@ -164,7 +178,7 @@ class AgendaController extends Controller
             'tanggal' => 'required',
             'mulai' => 'required',
             'selesai' => 'required',
-            'pendamping' => 'required',
+            // 'pendamping' => 'required',
             'keterangan' => 'required',
             'status' => 'required',
             'unit_id' => 'required'
@@ -175,7 +189,7 @@ class AgendaController extends Controller
         $agenda->tanggal = $request->input('tanggal');
         $agenda->mulai = $request->input('mulai');
         $agenda->selesai = $request->input('selesai');
-        $agenda->pendamping = $request->input('pendamping');
+        // $agenda->pendamping = $request->input('pendamping');
         $agenda->keterangan = $request->input('keterangan');
         $agenda->status = $request->input('status');
         $agenda->unit_id = $request->input('unit_id');

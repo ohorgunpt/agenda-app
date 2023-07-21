@@ -19,8 +19,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'nip',
         'email',
         'password',
+        'role',
+        'unit_id',
+        'status'
     ];
 
     /**
@@ -41,4 +45,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+      /**
+     * Get the user that owns the Agenda
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function namaUnit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id');
+    }
 }

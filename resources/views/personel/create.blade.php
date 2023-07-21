@@ -49,7 +49,13 @@
                         <tr>
                             <td>Unit</td>
                             <td>
-                                <input class="form-control" type="text" name="unit_id" placeholder="Unit">
+                                <select name="unit_id" id="" class="form-control">
+                                    <option value="0">--Pilih Data--</option>
+                                    @foreach ($unit as $units)
+                                        <option value="{{$units->id}}">{{$units->nama_unit}}</option>
+
+                                    @endforeach
+                                </select>
                             </td>
                         </tr>
                         <tr>
