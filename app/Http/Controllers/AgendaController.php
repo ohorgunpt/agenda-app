@@ -11,6 +11,7 @@ use App\Models\Personel;
 use App\Models\User;
 use App\Models\Sambutan;
 use App\Models\Pointer;
+use App\Models\AddPedamping;
 use Illuminate\Support\Facades\DB;
 use Auth;
 
@@ -24,17 +25,23 @@ class AgendaController extends Controller
      */
     public function index(Request $request)
     {
+        $units = Unit::all();
+        // $agendaForpendamping = Agenda::all();
         if($request->has('search')){
-            // $agenda = Agenda::where('agenda','LIKE','%'.$request->search.'%');
             $agenda = Agenda::where('agenda','LIKE','%'.$request->search.'%');
-            // $agenda = DB::table('agendas')->where('agenda','LIKE','%'.$request->search.'%');
+            $agenda = Agenda::where('agenda','LIKE','%'.$request->search.'%');
+            $agenda = DB::table('agendas')->where('agenda','LIKE','%'.$request->search.'%');
         }else{
             $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
+            // $agenda = Agenda::all();
         }
 
+        // $agenda = Agenda::all();
+        // $addpendamping = $agenda->pendamping();
+        // dd($addpendamping);
         //kita test master bladenya
-
-        return view('agenda.index', compact('agenda'));
+        // $agenda = Agenda::all();
+        return view('agenda.index', compact('agenda', 'units'));
     }
 
     /**
@@ -150,11 +157,10 @@ class AgendaController extends Controller
         //passing to edit page
         $agenda = Agenda::find($id);
         $units = Unit::all();
+        // $pendamping = AddPedamping::all("agenda_id", "=", $agenda->id)->first();
         //redirect to edit page
         return view('agenda.edit', compact('agenda', 'units'));
     }
-
-
 
     /**
      * Update the specified resource in storage.

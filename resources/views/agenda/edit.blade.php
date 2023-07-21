@@ -24,6 +24,27 @@
                 <div class="card-header">
                     <h4>Form Edit</h4>
                 </div>
+                @php
+
+                    use App\Models\User;
+                    $user = User::all();
+
+                @endphp
+                <form action="{{ route('tambahpendamping.store') }}" method="post">
+                    @csrf
+                    @method('POST')
+                    <input type="hidden" name="agenda_id" value="{{ $agenda->id }}">
+                    <select name="pendamping_id" class="form-control" onchange="func1(this.value)">
+                        <option selected>Pilih Pendamping</option>
+                        @foreach ($user as $pendamping)
+                            <option value="{{ $pendamping->id }}">{{ $pendamping->name }}</option>
+                        @endforeach
+                    </select>
+
+                     <button class="btn btn-primary">Add</button> |
+
+                </form>
+
                 <form action="{{ route('agenda.update', $agenda->id) }}" method="post">
                     @csrf
                     @method('PUT')
@@ -39,14 +60,15 @@
                             <td>
                                 {{-- <input class="form-control" value="{{ $agenda->kategori }}" type="text" name="kategori">
                                 <select name="kategori" class="form-control"> --}}
-                                    @php
-                                        use App\Models\Category;
-                                        $category = Category::all();
-                                    @endphp
-                                    @foreach ($category as $kategori)
-                                        {{-- <option value="{{ $kategori->id }}">{{ $kategori->namakategori }}</option> --}}
-                                        <input class="form-control" type="text" name="kategori" value="{{ $kategori->namakategori }}">
-                                    @endforeach
+                                @php
+                                    use App\Models\Category;
+                                    $category = Category::all();
+                                @endphp
+                                @foreach ($category as $kategori)
+                                    {{-- <option value="{{ $kategori->id }}">{{ $kategori->namakategori }}</option> --}}
+                                    <input class="form-control" type="text" name="kategori"
+                                        value="{{ $kategori->namakategori }}">
+                                @endforeach
                                 {{-- </select> --}}
                             </td>
                         </tr>
@@ -69,25 +91,11 @@
                             </td>
                         </tr>
                         <tr>
-                            @php
 
-                                use App\Models\User;
-                                $user = User::all();
 
-                            @endphp
-                             <input type="hidden" name="agenda_id"  value="{{$agenda->id}}">
                             <td>Pendamping</td>
                             <td>
-                                <form action="{{route("tambahpendamping.store")}}" method="post">
-                                    @csrf
-                                    <select name="pendamping_id" class="form-control">
-                                        <option selected>Pilih Pendamping</option>
-                                        @foreach ($user as $pendamping)
-                                            <option value="{{ $pendamping->id }}">{{ $pendamping->name }}</option>
-                                        @endforeach
-                                    </select> | <button class="btn btn-primary">Add</button> |
 
-                                </form>
                                 <hr class="mt-4">
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
@@ -97,7 +105,102 @@
                                                 <th>Nama Pendamping</th>
                                             </tr>
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody>
+                                            @php
+                                                use App\Models\AddPedamping;
+
+                                                $pendamping = AddPedamping::where('agenda_id', '=', $agenda->id)->get();
+                                            @endphp
+                                            @foreach ($pendamping as $daftar_pendamping)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $daftar_pendamping->namaPendamping->name }}</td>
+                                                    <td>
+
+
+                                                        {{--
+                                                    <a href="{{ route('agenda.edit', $a->id) }}" class="btn btn-warning"
+                                                        title="Edit"><i class="fas fa-edit"></i></a>
+                                                    <a href="{{ route('sambutan.input', $a->id) }}"
+                                                        class="btn btn-icon icon-left btn-warning"
+                                                        title="Tambah Sambutan"><i class="fas fa-file-word"></i></a>
+                                                    <a href="{{ route('pointer.input', $a->id) }}"
+                                                        class="btn btn-icon icon-left btn-warning"
+                                                        title="Tambah Pointer"><i class="fas fa-folder-plus"></i></a>
+                                                    <a href="{{ route('data_dukung.create', $a->id) }}"
+                                                        class="btn btn-icon icon-left btn-warning"
+                                                        title="Tambah Data Dukung"><i class="fas fa-file-upload"></i></a>
+                                                    <a href="{{ route('datadukung.showdatadukung', $a->id) }}"
+                                                        class="btn btn-icon icon-left btn-warning"
+                                                        title="List Data Dukung"><i class="fas fa-clipboard-list"></i></a>
+
+                                                    <a href="{{ route('agenda.showdetail', $a->id) }}" class="btn btn-primary"
+                                                        title="Detail"><i class="fas fa-folder-open"></i></a>
+                                                    <a href="{{ route('agenda.destroy', $a->id) }}"
+                                                        class="btn btn-danger" title="Hapus"><i
+                                                            class="fas fa-trash"></i></a>
+
+                                                            @elseif(Auth::user()->role=='tu_sestama')
+                                                            <a href="{{ route('agenda.edit', $a->id) }}" class="btn btn-warning"
+                                                                title="Edit"><i class="fas fa-edit"></i></a>
+                                                            <a href="{{ route('sambutan.input', $a->id) }}"
+                                                                class="btn btn-icon icon-left btn-warning"
+                                                                title="Tambah Sambutan"><i class="fas fa-file-word"></i></a>
+                                                            <a href="{{ route('pointer.input', $a->id) }}"
+                                                                class="btn btn-icon icon-left btn-warning"
+                                                                title="Tambah Pointer"><i class="fas fa-folder-plus"></i></a>
+                                                            <a href="{{ route('data_dukung.create', $a->id) }}"
+                                                                class="btn btn-icon icon-left btn-warning"
+                                                                title="Tambah Data Dukung"><i class="fas fa-file-upload"></i></a>
+                                                            <a href="{{ route('datadukung.showdatadukung', $a->id) }}"
+                                                                class="btn btn-icon icon-left btn-warning"
+                                                                title="List Data Dukung"><i class="fas fa-clipboard-list"></i></a>
+
+                                                            <a href="{{ route('agenda.showdetail', $a->id) }}" class="btn btn-primary"
+                                                                title="Detail"><i class="fas fa-folder-open"></i></a>
+                                                            <a href="{{ route('agenda.destroy', $a->id) }}"
+                                                                class="btn btn-danger" title="Hapus"><i
+                                                                    class="fas fa-trash"></i></a>
+
+
+
+                                                      <a href="{{ route('sambutan.input', $a->id) }}"
+                                                          class="btn btn-icon icon-left btn-warning"
+                                                          title="Tambah Sambutan"><i class="fas fa-file-word"></i></a>
+                                                      <a href="{{ route('pointer.input', $a->id) }}"
+                                                          class="btn btn-icon icon-left btn-warning"
+                                                          title="Tambah Pointer"><i class="fas fa-folder-plus"></i></a>
+                                                      <a href="{{ route('data_dukung.create', $a->id) }}"
+                                                          class="btn btn-icon icon-left btn-warning"
+                                                          title="Tambah Data Dukung"><i class="fas fa-file-upload"></i></a>
+                                                      <a href="{{ route('datadukung.showdatadukung', $a->id) }}"
+                                                          class="btn btn-icon icon-left btn-warning"
+                                                          title="List Data Dukung"><i class="fas fa-clipboard-list"></i></a>
+
+                                                      <a href="{{ route('agenda.showdetail', $a->id) }}" class="btn btn-primary"
+                                                          title="Detail"><i class="fas fa-folder-open"></i></a>
+
+
+                                                          <a href="{{ '#'}}"
+                                                              class="btn btn-icon icon-left btn-warning"
+                                                              title="Link Humas"><i class="fas fa-file-word"></i></a>
+
+
+                                                      <a href="{{ route('agenda.showdetail', $a->id) }}" class="btn btn-primary"
+                                                              title="Detail"><i class="fas fa-folder-open"></i></a>
+
+
+                                                          <a href="{{ '#'}}"
+                                                              class="btn btn-icon icon-left btn-warning"
+                                                              title="Protokol menambahkan informasi detail"><i class="fas fa-file-word"></i></a>
+                                                          <a href="{{ route('agenda.showdetail', $a->id) }}" class="btn btn-primary"
+                                                                  title="Detail"><i class="fas fa-folder-open"></i></a>
+
+                                                   --}}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
                                     </table>
                                 </div>
                             </td>
@@ -149,3 +252,4 @@
     </section>
     </section>
 @endsection
+

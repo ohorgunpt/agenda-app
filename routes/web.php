@@ -110,4 +110,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route tambah Pendamping
-Route::post('/pendamping', [App\Http\Controllers\AddPendampingController::class, 'addpedampings'])->name('tambahpendamping.store');
+Route::post('/pendamping', [App\Http\Controllers\AddPendampingController::class, 'store'])->name('tambahpendamping.store');

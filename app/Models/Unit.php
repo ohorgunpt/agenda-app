@@ -9,4 +9,11 @@ class Unit extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    /**
+     * Get the agenda that owns the Unit
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+
 }
