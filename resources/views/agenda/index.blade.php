@@ -64,7 +64,7 @@
                                               //   $pendamping = AddPedamping::where('agenda_id', '=', 'id', 'user_id','=','id')->get();
 
                                           @endphp
-                                          @if (Auth::user()->role == 'tu_kepala')
+                                          @if (Auth::user()->role == 'tu_kepala' || Auth::user()->role == 'dsp' || Auth::user()->role == 'humas')
                                               {{-- <h1>{{$b->agenda}}</h1> --}}
 
                                               @foreach ($agenda as $a)
@@ -166,7 +166,7 @@
                                                                   class="btn btn-primary" title="Detail"><i
                                                                       class="fas fa-folder-open"></i></a>
                                                           @elseif (Auth::user()->role == 'humas')
-                                                              <a href="{{ '#' }}"
+                                                              <a href="{{ route('data_humas.create', $a->id) }}"
                                                                   class="btn btn-icon icon-left btn-warning"
                                                                   title="Link Humas"><i class="fas fa-file-word"></i></a>
 
@@ -187,7 +187,8 @@
                                                   </tr>
                                               @endforeach
                                               {{-- ===================================================== --}}
-                                          @elseif (Auth::user()->role == 'tu_kepala')
+
+                                          @elseif (Auth::user()->role == 'tu_sestama')
                                               {{-- <h1>{{$b->agenda}}</h1> --}}
 
                                               @foreach ($agenda as $a)
@@ -199,10 +200,16 @@
                                                       <td>{{ $a->kategori }}</td>
                                                       <td>{{ $a->mulai }}</td>
                                                       <td>{{ $a->selesai }}</td>
-                                                      <td>{{ $a->pendamping }}</td>
+                                                      <td>
+                                                        <ul>
+                                                            @foreach ($a->pendamping()->get() as $item)
+                                                                <li>{{ $item->namaUser->name }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                      </td>
                                                       <td>{{ $a->keterangan }}</td>
                                                       <td>{{ $a->status }}</td>
-                                                      <td>{{ $a->unit_id }}</td>
+
                                                       <td>
                                                           @if (Auth::user()->role == 'tu_kepala')
                                                               <a href="{{ route('agenda.edit', $a->id) }}"

@@ -111,3 +111,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Route tambah Pendamping
 Route::post('/pendamping', [App\Http\Controllers\AddPendampingController::class, 'store'])->name('tambahpendamping.store');
+
+//Route to Data Humas
+Route::resource('data_humas', \App\Http\Controllers\HumasController::class);
+Route::get('datahumas/{id}',[\App\Http\Controllers\HumasController::class,'showdatahumas'])->name('datahumas.showdatadukung');
+//Route to Data Humas
+Route::resource('storage', \App\Http\Controllers\HumasController::class);
+
+//oute untuk destroy Data Humas
+Route::get('datahumas/destroy/{id}', [\App\Http\Controllers\HumasController::class,'destroy'])->name('datahumas.destroy');
