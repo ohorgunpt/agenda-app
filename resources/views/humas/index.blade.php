@@ -1,12 +1,13 @@
+
 @extends('master')
 @section('title')
-    <title>Data Dukung</title>
+    <title>Data Humas</title>
 @endsection
 
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Data Dukung</h1>
+            <h1>Data Humas</h1>
         </div>
         <div class="section-body">
         </div>
@@ -14,7 +15,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-
+                        <a href="{{route('category.create')}}" class="btn btn-primary">Add Data</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-border">
@@ -27,7 +28,7 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            {{-- <tbody>
                                 @foreach ($listdatadukung as $item)
                                     <tr>
                                         <td>{{ $item->agenda }}</td>
@@ -35,15 +36,15 @@
                                         <td>{{ $item->keterangan }}</td>
                                         <td>{{ $item->agenda_id }}</td>
                                         {{-- <td>{{ $d->tipebalai->nama_tipe }}</td> --}}
-                                        <td>
+                                        {{-- <td>
                                             <a href="{{ Storage::url($item->file) }}" class="btn btn-info"
-                                                title="File"><i class="far fa-file"></i></a>
+                                                title="File"><i class="far fa-file"></i></a> --}}
                                             {{-- <a href="{{ route('balai.edit', $d->id) }}" class="btn btn-warning" title="Edit"><i class="fas fa-edit"></i></a> --}}
-                                            <a href="{{ route('datadukung.destroy', $item->id) }}"
+                                            {{-- <a href="{{ route('datadukung.destroy', $item->id) }}"
                                                 class="btn btn-danger" title="Hapus"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
 
                             </tbody>
                         </table>

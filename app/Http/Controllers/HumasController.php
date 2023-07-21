@@ -16,15 +16,15 @@ class HumasController extends Controller
     public function index()
     {
         //
-        $agenda_id = Agenda::get();
+        // $agenda_id = Agenda::get();
         //Halaman data dukung
-        $datahumas =  Datahumas::where('id', $agenda_id->id)->first();
-        $listdatahumas = DB::table('agendas')
-                        ->select('agendas.id','agendas.agenda','humas.agenda_id','datadukungs.nama_data_dukung','datadukungs.file')
-                        ->leftJoin('datadukungs','datadukungs.agenda_id','=','agendas.id')
-                        ->where('datadukungs.agenda_id','=',$agenda_id->id[0])
-                        ->get();
-        return view('data_dukung.index', compact('listdatadukung', 'datadukung'));
+        // $datahumas =  Humas::where('id', $agenda_id->id)->first();
+        // $listdatahumas = DB::table('agendas')
+        //                 ->select('agendas.id','agendas.agenda','humas.agenda_id','humas.deskripsi','humas.tautan','datadukungs.file')
+        //                 // ->leftJoin('datadukungs','datadukungs.agenda_id','=','agendas.id')
+        //                 // ->where('datadukungs.agenda_id','=',$agenda_id->id[0])
+        //                 ->get();
+        return view('humas.index');
     }
 
     /**
@@ -33,6 +33,7 @@ class HumasController extends Controller
     public function create()
     {
         //
+        return view('data_dukung.create');
     }
 
     /**

@@ -31,7 +31,7 @@
                         <tr>
                             <td>ID Agenda</td>
                             <td>
-                                <input class="form-control" value="{{ $agenda->id }}" type="text" name="agenda_id">
+                                {{-- <input class="form-control" value="{{ $agenda->id }}" type="text" name="agenda_id"> --}}
                             </td>
                         </tr>
                         <tr>
