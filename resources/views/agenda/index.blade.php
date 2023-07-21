@@ -13,7 +13,7 @@
 
                 $dataUnit = Unit::all();
             @endphp
-              <h1>Data Agenda {{$agenda->unit_id}} </h1>
+              <h1>Data Agenda {{ Auth::user()->namaUnit->nama_unit }} </h1>
           </div>
           <div class="section-body">
               <div class="row">
@@ -47,7 +47,6 @@
                                               <th>Pendamping</th>
                                               <th>Keterangan</th>
                                               <th>Status</th>
-                                              <th>ID Unit</th>
                                               <th>Action</th>
                                           </tr>
                                       </thead>
@@ -90,7 +89,6 @@
 
                                                       <td>{{ $a->keterangan }}</td>
                                                       <td>{{ $a->status }}</td>
-                                                      <td>{{ $a->unit_id }}</td>
                                                       <td>
                                                           @if (Auth::user()->role == 'tu_kepala')
                                                               <a href="{{ route('agenda.edit', $a->id) }}"

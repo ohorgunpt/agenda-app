@@ -53,6 +53,6 @@ class User extends Authenticatable
      */
     public function namaUnit()
     {
-        return $this->belongsTo(Unit::class);
+        return $this->belongsTo(Unit::class, 'unit_id');
     }
 }
