@@ -64,12 +64,11 @@
                                     use App\Models\Category;
                                     $category = Category::all();
                                 @endphp
-                                <select name="kategori" id="">
-                                    <option value="{{ $agenda->kategori  }}"  selected >{{ $agenda->kategori  }}</option>
-                                    @foreach ($category as $ct)
-                                    <option value="{{ $ct->namakategori }}">{{ $ct->namakategori }}</option>
+                                @foreach ($category as $kategori)
+                                    {{-- <option value="{{ $kategori->id }}">{{ $kategori->namakategori }}</option> --}}
+                                    <input class="form-control" type="text" name="kategori"
+                                        value="{{ $kategori->namakategori }}">
                                 @endforeach
-                                </select>
                                 {{-- </select> --}}
                             </td>
                         </tr>
