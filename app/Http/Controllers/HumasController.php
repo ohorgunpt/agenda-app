@@ -33,7 +33,7 @@ class HumasController extends Controller
     public function create()
     {
         //
-        return view('data_dukung.create');
+        return view('humas.create');
     }
 
     /**

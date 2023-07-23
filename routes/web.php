@@ -113,5 +113,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('/pendamping', [App\Http\Controllers\AddPendampingController::class, 'store'])->name('tambahpendamping.store');
 
 //Route to Data Humas
-Route::get('humas', [App\Http\Controllers\HumasController::class, 'index'])->name('humas.index');
+// Route::get('humas', [App\Http\Controllers\HumasController::class, 'index'])->name('datahumas.index');
 Route::get('humas', [App\Http\Controllers\HumasController::class, 'create'])->name('humas.create');

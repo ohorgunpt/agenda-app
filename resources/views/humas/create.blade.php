@@ -6,10 +6,10 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Create Data Dukung Page</h1>
+            <h1>Create Data Humas </h1>
         </div>
         <div class="section-body">
-            {{-- show error message --}}
+            {{-- show erroRoute [datahumas.index] not defined.r message --}}
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <strong>Wait</strong> There were some problems with your input<br>
@@ -22,7 +22,7 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <h4>Form Add Data Dukung</h4>
+                    <h4>Form Add Data Humas</h4>
                 </div>
                 <form action="{{ route('data_dukung.store') }}" enctype="multipart/form-data" method="post">
                     @csrf
