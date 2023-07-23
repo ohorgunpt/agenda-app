@@ -114,4 +114,5 @@ Route::post('/pendamping', [App\Http\Controllers\AddPendampingController::class,
 
 //Route to Data Humas
 // Route::get('humas', [App\Http\Controllers\HumasController::class, 'index'])->name('datahumas.index');
-Route::get('humas', [App\Http\Controllers\HumasController::class, 'create'])->name('humas.create');
+Route::get('humas/create/{id}', [App\Http\Controllers\HumasController::class, 'create'])->name('humas.create');
+Route::post('humas/store',[App\Http\Controllers\HumasController::class, 'store'])->name('humas.store');
