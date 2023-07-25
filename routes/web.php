@@ -111,8 +111,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Route tambah Pendamping
 Route::post('/pendamping', [App\Http\Controllers\AddPendampingController::class, 'store'])->name('tambahpendamping.store');
-
+//route destroy pendamping
+Route::delete('pendamping/destroy/{id}', [\App\Http\Controllers\AddPendampingController::class,'destroy'])->name('pendamping.destroy');
 //Route to Data Humas
 // Route::get('humas', [App\Http\Controllers\HumasController::class, 'index'])->name('datahumas.index');
 Route::get('humas/create/{id}', [App\Http\Controllers\HumasController::class, 'create'])->name('humas.create');
 Route::post('humas/store',[App\Http\Controllers\HumasController::class, 'store'])->name('humas.store');
+

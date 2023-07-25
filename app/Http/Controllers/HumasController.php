@@ -53,7 +53,7 @@ class HumasController extends Controller
             'agenda_id' => $request->agenda_id,
             'deskripsi' => $request->deskripsi,
             'tautan' => $request->tautan,
-            // 'file' => $file_path,
+            'file' => $file_path,
         ]);
 
         if(!$input){
