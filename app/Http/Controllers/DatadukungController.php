@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Agenda;
 use App\Models\Datadukung;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+
 use DB;
 
 class DatadukungController extends Controller
@@ -52,7 +52,7 @@ class DatadukungController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created rtextesource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

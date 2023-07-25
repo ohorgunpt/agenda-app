@@ -1,4 +1,3 @@
-
 @extends('master')
 @section('title')
     <title>Data Humas</title>
@@ -15,36 +14,36 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{route('category.create')}}" class="btn btn-primary">Add Data</a>
+
                     </div>
                     <div class="card-body">
                         <table class="table table-border">
                             <thead>
                                 <tr>
                                     <th>Nama Agenda</th>
-                                    <th>Nama Data Dukung</th>
-                                    <th>Keterangan</th>
+                                    <th>Deskripsi</th>
+                                    <th>Tautan</th>
                                     <th>ID Agenda</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            {{-- <tbody>
+                            <tbody>
                                 @foreach ($listdatadukung as $item)
                                     <tr>
                                         <td>{{ $item->agenda }}</td>
-                                        <td>{{ $item->nama_data_dukung }}</td>
-                                        <td>{{ $item->keterangan }}</td>
+                                        <td>{{ $item->deskripsi }}</td>
+                                        <td>{{ $item->tautan }}</td>
                                         <td>{{ $item->agenda_id }}</td>
                                         {{-- <td>{{ $d->tipebalai->nama_tipe }}</td> --}}
-                                        {{-- <td>
+                                        <td>
                                             <a href="{{ Storage::url($item->file) }}" class="btn btn-info"
-                                                title="File"><i class="far fa-file"></i></a> --}}
+                                                title="File"><i class="far fa-file"></i></a>
                                             {{-- <a href="{{ route('balai.edit', $d->id) }}" class="btn btn-warning" title="Edit"><i class="fas fa-edit"></i></a> --}}
-                                            {{-- <a href="{{ route('datadukung.destroy', $item->id) }}"
+                                            <a href="{{ route('datadukung.destroy', $item->id) }}"
                                                 class="btn btn-danger" title="Hapus"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
 
                             </tbody>
                         </table>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('agenda_id')->constrained('agendas');
             $table->string('deskripsi');
             $table->string('tautan');
+            $table->string('file');
             $table->timestamps();
         });
     }
