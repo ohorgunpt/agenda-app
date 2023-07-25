@@ -37,10 +37,16 @@ class AddPendampingController extends Controller
         $pendamping = AddPedamping::create(
             [
                 'user_id' => $request->pendamping_id,
-                
+
                 'agenda_id'=>$request->agenda_id,
             ]
         );
+        return redirect()->back();
+    }
+    public function destroy($id)
+    {
+        $pendamping = AddPedamping::find($id);
+        $pendamping->delete();
         return redirect()->back();
     }
 }
