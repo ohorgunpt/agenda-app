@@ -16,7 +16,7 @@ use App\Http\Middleware\SuperAdmin;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.home');
 });
 
 //Route group
