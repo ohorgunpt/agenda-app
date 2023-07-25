@@ -41,7 +41,7 @@
                         @endforeach
                     </select>
 
-                     <button class="btn btn-primary">Add</button> |
+                    <button class="btn btn-primary">Add</button> |
 
                 </form>
 
@@ -215,7 +215,14 @@
                         <tr>
                             <td>Status</td>
                             <td>
-                                <input class="form-control" value="{{ $agenda->status }}" type="text" name="status">
+                                {{-- <input class="form-control" value="{{ $agenda->status }}" type="text" name="status"> --}}
+                                <select name="status" id="">
+                                    <option value="{{$agenda->status}}" selected="selected">{{$agenda->status}}</option>
+                                    <option value="Terlaksana">Terlaksana</option>
+                                    <option value="Ditunda">Ditunda</option>
+                                    <option value="Dibatalkan">Dibatalkan</option>
+                                </select>
+
                             </td>
                         </tr>
                         <tr>
@@ -252,4 +259,3 @@
     </section>
     </section>
 @endsection
-

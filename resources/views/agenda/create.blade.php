@@ -76,10 +76,10 @@
                             <label>Keterangan</label>
                             <input class="form-control" type="text" name="keterangan" placeholder="Keterangan">
                         </div>
-                        <div class="form-group">
-                            <label>Status</label>
-                            <input class="form-control" type="text" name="status" placeholder="Status">
-                        </div>
+
+
+                            <input type="hidden" type="text" name="status" placeholder="Status" value="Penjadwalan Awal">
+                      
 
                         <div class="question">
                             <p>Sifat<span class="required"></span></p>
