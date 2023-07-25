@@ -103,6 +103,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Pendamping</th>
+                                                {{-- <th>Action</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -115,89 +116,15 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $daftar_pendamping->namaPendamping->name }}</td>
-                                                    <td>
-
-
-                                                        {{--
-                                                    <a href="{{ route('agenda.edit', $a->id) }}" class="btn btn-warning"
-                                                        title="Edit"><i class="fas fa-edit"></i></a>
-                                                    <a href="{{ route('sambutan.input', $a->id) }}"
-                                                        class="btn btn-icon icon-left btn-warning"
-                                                        title="Tambah Sambutan"><i class="fas fa-file-word"></i></a>
-                                                    <a href="{{ route('pointer.input', $a->id) }}"
-                                                        class="btn btn-icon icon-left btn-warning"
-                                                        title="Tambah Pointer"><i class="fas fa-folder-plus"></i></a>
-                                                    <a href="{{ route('data_dukung.create', $a->id) }}"
-                                                        class="btn btn-icon icon-left btn-warning"
-                                                        title="Tambah Data Dukung"><i class="fas fa-file-upload"></i></a>
-                                                    <a href="{{ route('datadukung.showdatadukung', $a->id) }}"
-                                                        class="btn btn-icon icon-left btn-warning"
-                                                        title="List Data Dukung"><i class="fas fa-clipboard-list"></i></a>
-
-                                                    <a href="{{ route('agenda.showdetail', $a->id) }}" class="btn btn-primary"
-                                                        title="Detail"><i class="fas fa-folder-open"></i></a>
-                                                    <a href="{{ route('agenda.destroy', $a->id) }}"
-                                                        class="btn btn-danger" title="Hapus"><i
-                                                            class="fas fa-trash"></i></a>
-
-                                                            @elseif(Auth::user()->role=='tu_sestama')
-                                                            <a href="{{ route('agenda.edit', $a->id) }}" class="btn btn-warning"
-                                                                title="Edit"><i class="fas fa-edit"></i></a>
-                                                            <a href="{{ route('sambutan.input', $a->id) }}"
-                                                                class="btn btn-icon icon-left btn-warning"
-                                                                title="Tambah Sambutan"><i class="fas fa-file-word"></i></a>
-                                                            <a href="{{ route('pointer.input', $a->id) }}"
-                                                                class="btn btn-icon icon-left btn-warning"
-                                                                title="Tambah Pointer"><i class="fas fa-folder-plus"></i></a>
-                                                            <a href="{{ route('data_dukung.create', $a->id) }}"
-                                                                class="btn btn-icon icon-left btn-warning"
-                                                                title="Tambah Data Dukung"><i class="fas fa-file-upload"></i></a>
-                                                            <a href="{{ route('datadukung.showdatadukung', $a->id) }}"
-                                                                class="btn btn-icon icon-left btn-warning"
-                                                                title="List Data Dukung"><i class="fas fa-clipboard-list"></i></a>
-
-                                                            <a href="{{ route('agenda.showdetail', $a->id) }}" class="btn btn-primary"
-                                                                title="Detail"><i class="fas fa-folder-open"></i></a>
-                                                            <a href="{{ route('agenda.destroy', $a->id) }}"
-                                                                class="btn btn-danger" title="Hapus"><i
-                                                                    class="fas fa-trash"></i></a>
-
-
-
-                                                      <a href="{{ route('sambutan.input', $a->id) }}"
-                                                          class="btn btn-icon icon-left btn-warning"
-                                                          title="Tambah Sambutan"><i class="fas fa-file-word"></i></a>
-                                                      <a href="{{ route('pointer.input', $a->id) }}"
-                                                          class="btn btn-icon icon-left btn-warning"
-                                                          title="Tambah Pointer"><i class="fas fa-folder-plus"></i></a>
-                                                      <a href="{{ route('data_dukung.create', $a->id) }}"
-                                                          class="btn btn-icon icon-left btn-warning"
-                                                          title="Tambah Data Dukung"><i class="fas fa-file-upload"></i></a>
-                                                      <a href="{{ route('datadukung.showdatadukung', $a->id) }}"
-                                                          class="btn btn-icon icon-left btn-warning"
-                                                          title="List Data Dukung"><i class="fas fa-clipboard-list"></i></a>
-
-                                                      <a href="{{ route('agenda.showdetail', $a->id) }}" class="btn btn-primary"
-                                                          title="Detail"><i class="fas fa-folder-open"></i></a>
-
-
-                                                          <a href="{{ '#'}}"
-                                                              class="btn btn-icon icon-left btn-warning"
-                                                              title="Link Humas"><i class="fas fa-file-word"></i></a>
-
-
-                                                      <a href="{{ route('agenda.showdetail', $a->id) }}" class="btn btn-primary"
-                                                              title="Detail"><i class="fas fa-folder-open"></i></a>
-
-
-                                                          <a href="{{ '#'}}"
-                                                              class="btn btn-icon icon-left btn-warning"
-                                                              title="Protokol menambahkan informasi detail"><i class="fas fa-file-word"></i></a>
-                                                          <a href="{{ route('agenda.showdetail', $a->id) }}" class="btn btn-primary"
-                                                                  title="Detail"><i class="fas fa-folder-open"></i></a>
-
-                                                   --}}
-                                                    </td>
+                                                    {{-- <td> --}}
+                                                        {{-- <form
+                                                            action="{{ route('pendamping.destroy', $daftar_pendamping->id) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form> --}}
+                                                    {{-- </td> --}}
                                                 </tr>
                                             @endforeach
                                         </tbody>

@@ -13,7 +13,7 @@
 
                 $dataUnit = Unit::all();
             @endphp
-              <h1>Data Agenda {{ Auth::user()->namaUnit->nama_unit }} </h1>
+             <h1>Data Agenda {{ Auth::user()->namaUnit->nama_unit }}</h1> {{-- <h1>Data Agenda  </h1> --}}
           </div>
           <div class="section-body">
               <div class="row">

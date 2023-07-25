@@ -31,6 +31,22 @@ class UserSeeder extends Seeder
                 'unit_id' =>2,
 
             ],
+            [
+                'name'=>'dsp',
+                'email'=>'dsp@seeder.com',
+                'password'=>Hash::make('password'),
+                'role'=>'dsp',
+                'unit_id' =>2,
+
+            ],
+            [
+                'name'=>'humas',
+                'email'=>'humas@seeder.com',
+                'password'=>Hash::make('password'),
+                'role'=>'humas',
+                'unit_id' =>2,
+
+            ],
         ];
 
         foreach ($users as $user) {

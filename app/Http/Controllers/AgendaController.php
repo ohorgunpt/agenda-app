@@ -138,12 +138,17 @@ class AgendaController extends Controller
         // $datadukungagenda = Datadukung::where('id', $agenda->id)->first();
         // dd($datadukung);
         $datadukungagenda = DB::table('agendas')
-                        ->select('agendas.id','agendas.agenda','datadukungs.agenda_id','datadukungs.nama_data_dukung','datadukungs.file')
+                        ->select('agendas.id','agendas.agenda','datadukungs.agenda_id','datadukungs.nama_data_dukung','datadukungs.file', 'datadukungs.created_at')
                         ->leftJoin('datadukungs','datadukungs.agenda_id','=','agendas.id')
                         ->where('datadukungs.agenda_id','=',$agenda->id)
                         ->get();
                         // dd($datadukungagenda);
-        return view('agenda.showdetail', compact('datadukungagenda','agenda','sambutan','pointer'));
+        $datahumas = DB::table('agendas')
+                        ->select('agendas.id','agendas.agenda','humas.agenda_id','humas.deskripsi','humas.tautan','humas.file')
+                        ->leftJoin('humas','humas.agenda_id','=','agendas.id')
+                        ->where('humas.agenda_id','=',$agenda->id)
+                        ->get();
+        return view('agenda.showdetail', compact('datadukungagenda','agenda','sambutan','pointer','datahumas'));
     }
 
     /**
