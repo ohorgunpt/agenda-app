@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sambutans', function (Blueprint $table) {
             $table->id();
-            $table->string('sambutan')->nullable();
+            $table->text('sambutan')->nullable();
             $table->string('keterangan')->nullable();
             $table->bigInteger('agenda_id');
             // $table->bigInteger('unit_id');

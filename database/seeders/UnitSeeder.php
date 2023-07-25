@@ -20,13 +20,13 @@ class UnitSeeder extends Seeder
                 'keterangan'=>'superadmin',
             ],
             [
-                'nama_unit'=>'sestama',
-                'keterangan'=>'sestama',
+                'nama_unit'=>'kepala_bpom',
+                'keterangan'=>'kbpom',
             ],
             [
-                'nama_unit'=>'kepala BPOM',
-                'keterangan'=>'kepala BPOM',
-            ]
+                'nama_unit'=>'Sekretaris Utama',
+                'keterangan'=>'Sestama',
+            ],
         ];
         foreach ($units as $unit) {
             Unit::create($unit);

@@ -1,9 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Category;
 
 class KategoriSeeder extends Seeder
 {
@@ -24,5 +23,9 @@ class KategoriSeeder extends Seeder
             'namakategori'=>'dinas luar',
          ],
     ];
+    foreach ($kategori as $value) {
+
+        Category::create($value);
     }
+}
 }
