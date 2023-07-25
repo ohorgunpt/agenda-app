@@ -6,11 +6,11 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Create Data Dukung Page</h1>
+            <h1>Create Data Humas </h1>
         </div>
         <div class="section-body">
-            {{-- show error message --}}
-            @if ($errors->any())
+            {{-- show erroRoute [datahumas.index] not defined.r message --}}
+            {{-- @if ($errors->any())
                 <div class="alert alert-danger">
                     <strong>Wait</strong> There were some problems with your input<br>
                     <ul>
@@ -19,31 +19,31 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
+            @endif --}}
             <div class="card">
                 <div class="card-header">
-                    <h4>Form Add Data Dukung</h4>
+                    <h4>Form Add Data Humas</h4>
                 </div>
-                <form action="{{ route('data_dukung.store') }}" enctype="multipart/form-data" method="post">
+                <form action="{{ route('humas.store') }}" enctype="multipart/form-data" method="post">
                     @csrf
                     @method('POST')
                     <table class="table table-outline-primary table-border">
                         <tr>
                             <td>ID Agenda</td>
                             <td>
-                                {{-- <input class="form-control" value="{{ $agenda->id }}" type="text" name="agenda_id"> --}}
+                                <input class="form-control" value="{{ $agenda->id }}" type="text" readonly name="agenda_id">
                             </td>
                         </tr>
                         <tr>
-                            <td>Nama Data Dukung</td>
+                            <td>Deskripsi</td>
                             <td>
-                                <input class="form-control" type="text" name="nama_data_dukung">
+                                <input class="form-control" type="text" name="deskripsi">
                             </td>
                         </tr>
                         <tr>
-                            <td>Keterangan</td>
+                            <td>Tautan</td>
                             <td>
-                                <input class="form-control" type="text" name="keterangan">
+                                <input class="form-control" type="text" name="tautan">
                             </td>
                         </tr>
                         <tr>

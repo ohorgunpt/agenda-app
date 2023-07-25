@@ -30,10 +30,11 @@ class HumasController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request, $id)
     {
         //
-        return view('data_dukung.create');
+        $agenda = Agenda::findOrFail($id);
+        return view('humas.create', compact('agenda'));
     }
 
     /**
@@ -41,7 +42,27 @@ class HumasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //deklarasi file
+        $file_path = '';
+        //cek apakah ada file yang diupload
+        if($request->hasFile('file')){
+            $file_path = $request->file('file')->store('humas','public');
+        }
+
+        $input =Humas::create([
+            'agenda_id' => $request->agenda_id,
+            'deskripsi' => $request->deskripsi,
+            'tautan' => $request->tautan,
+            // 'file' => $file_path,
+        ]);
+
+        if(!$input){
+            return redirect()->back()->with('Error Ada yang salah');
+        }else{
+            // return redirect()->route('datadukung.showdatadukung')->with('success', 'Data berhasil ditambahkan');
+            return redirect()->route('agenda.index');
+        }
+
     }
 
     /**

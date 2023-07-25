@@ -166,7 +166,7 @@
                                                                   class="btn btn-primary" title="Detail"><i
                                                                       class="fas fa-folder-open"></i></a>
                                                           @elseif (Auth::user()->role == 'humas')
-                                                              <a href="{{ route('humas.index', $a->id) }}"
+                                                              <a href="{{route('humas.create', $a->id)}}"
                                                                   class="btn btn-icon icon-left btn-warning"
                                                                   title="Link Humas"><i class="fas fa-file-word"></i></a>
 
