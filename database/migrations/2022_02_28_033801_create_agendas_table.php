@@ -20,10 +20,11 @@ return new class extends Migration
             $table->date('tanggal');
             $table->time('mulai');
             $table->time('selesai');
-            // $table->string('pendamping');
+            $table->string('tempat');
             $table->string('keterangan');
             $table->string('status');
             $table->string('sifat');
+
             $table->foreignId('unit_id')->constraint();
             $table->timestamps();
         });

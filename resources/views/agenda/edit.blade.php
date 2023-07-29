@@ -65,13 +65,17 @@
                                     $category = Category::all();
                                 @endphp
                                 <select name="kategori" id="">
-                                    <option value="{{ $agenda->kategori  }}"  selected >{{ $agenda->kategori  }}</option>
+                                    <option value="{{ $agenda->kategori }}" selected>{{ $agenda->kategori }}</option>
                                     @foreach ($category as $ct)
-                                    <option value="{{ $ct->namakategori }}">{{ $ct->namakategori }}</option>
-                                @endforeach
+                                        <option value="{{ $ct->namakategori }}">{{ $ct->namakategori }}</option>
+                                    @endforeach
                                 </select>
                                 {{-- </select> --}}
                             </td>
+                        </tr>
+                        <tr>
+                            <td>Tempat</td>
+                            <td><input type="text" name="tempat" value="{{ $agenda->tempat }}" class="form-control"></td>
                         </tr>
                         <tr>
                             <td>Tanggal</td>
@@ -118,7 +122,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $daftar_pendamping->namaPendamping->name }}</td>
                                                     {{-- <td> --}}
-                                                        {{-- <form
+                                                    {{-- <form
                                                             action="{{ route('pendamping.destroy', $daftar_pendamping->id) }}"
                                                             method="post">
                                                             @csrf
@@ -145,7 +149,8 @@
                             <td>
                                 {{-- <input class="form-control" value="{{ $agenda->status }}" type="text" name="status"> --}}
                                 <select name="status" id="">
-                                    <option value="{{$agenda->status}}" selected="selected">{{$agenda->status}}</option>
+                                    <option value="{{ $agenda->status }}" selected="selected">{{ $agenda->status }}
+                                    </option>
                                     <option value="Terlaksana">Terlaksana</option>
                                     <option value="Ditunda">Ditunda</option>
                                     <option value="Dibatalkan">Dibatalkan</option>

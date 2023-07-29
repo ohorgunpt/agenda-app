@@ -23,17 +23,17 @@
                               <div class="card-header">
                                   <a href="{{ route('agenda.create') }}" class="btn btn-primary">Add Agenda</a>
                                   &nbsp;&nbsp;
-                                  <form action="{{route('agenda.getdate')}}" class="row" method="POST">
-                                    @csrf
-                                    <div class="col">
+                                  <form action="{{ route('agenda.getdate') }}" class="row" method="POST">
+                                      @csrf
+                                      <div class="col">
                                           <div class="input-group">
-                                              <input type="date" name="start" class="form-control"  >
+                                              <input type="date" name="start" class="form-control">
 
                                           </div>
                                       </div>
                                       <div class="col">
                                           <div class="input-group">
-                                              <input type="date" name="end" class="form-control" >
+                                              <input type="date" name="end" class="form-control">
 
                                           </div>
                                       </div>
@@ -87,6 +87,7 @@
                                               <th>Tanggal</th>
                                               <th>Agenda</th>
                                               <th>Kategori</th>
+                                              <th>Tempat</th>
                                               <th>Mulai</th>
                                               <th>Selesai</th>
                                               <th>Pendamping</th>
@@ -96,29 +97,18 @@
                                           </tr>
                                       </thead>
                                       <tbody>
-                                          @php
 
-                                              use App\Models\Agenda;
-                                              // $user - Auth::user()->unit_id;
-                                              $agendaUser = Agenda::where('unit_id', '=', Auth::user()->unit_id);
-
-                                              //   $pendampings = DB::table('add_pedampings')
-
-                                              //                     ->leftJoin('users','users.id','=','add_pedampings.user_id')
-                                              //                     ->first();
-                                              //   $pendamping = AddPedamping::where('agenda_id', '=', 'id', 'user_id','=','id')->get();
-
-                                          @endphp
                                           @if (Auth::user()->role == 'tu_kepala' || Auth::user()->role == 'dsp' || Auth::user()->role == 'humas')
                                               {{-- <h1>{{$b->agenda}}</h1> --}}
 
                                               @foreach ($agenda as $a)
                                                   <tr>
                                                       <td>{{ $loop->iteration }}</td>
-                                                      <td>{{ Carbon\Carbon::parse($a->tanggal)->translatedFormat('l, d F Y') }}
+                                                      <td>{{ Carbon\Carbon::parse($a->tanggal) }}
                                                       </td>
                                                       <td>{{ $a->agenda }}</td>
                                                       <td>{{ $a->kategori }}</td>
+                                                      <td>{{ $a->tempat }}</td>
                                                       <td>{{ $a->mulai }}</td>
                                                       <td>{{ $a->selesai }}</td>
                                                       <td>
