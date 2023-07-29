@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('humas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('agenda_id')->constrained('agendas');
-            $table->string('deskripsi');
-            $table->string('tautan');
-            $table->string('file');
+            $table->string('deskripsi')->nullable();
+            $table->string('tautan')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

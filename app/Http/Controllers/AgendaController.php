@@ -14,7 +14,7 @@ use App\Models\Pointer;
 use App\Models\AddPedamping;
 use Illuminate\Support\Facades\DB;
 use Auth;
-
+use Carbon\Carbon;
 
 class AgendaController extends Controller
 {
@@ -26,22 +26,30 @@ class AgendaController extends Controller
     public function index(Request $request)
     {
         $units = Unit::all();
-        // $agendaForpendamping = Agenda::all();
-        if($request->has('search')){
-            $agenda = Agenda::where('agenda','LIKE','%'.$request->search.'%');
-            $agenda = Agenda::where('agenda','LIKE','%'.$request->search.'%');
-            $agenda = DB::table('agendas')->where('agenda','LIKE','%'.$request->search.'%');
-        }else{
-            $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
-            // $agenda = Agenda::all();
+
+
+
+        // $agendasearch = Agenda::select();
+
+        $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
+        if($request->start || $request->end){
+            $start = Carbon::parse($request->start)->toDateTimeString();
+            $end = Carbon::parse($request->end)->toDateTimeString();
+            $data= Agenda::whereBetween('tanggal',[$start, $end])->get();
+
+        }else {
+            $data = Agenda::latest()->get();
         }
 
-        // $agenda = Agenda::all();
-        // $addpendamping = $agenda->pendamping();
-        // dd($addpendamping);
-        //kita test master bladenya
-        // $agenda = Agenda::all();
-        return view('agenda.index', compact('agenda', 'units'));
+        return view('agenda.index', compact('agenda', 'units','data'));
+    }
+
+    public function getDate(Request $request)
+    {
+
+        $data['result']= Agenda::whereBetween('tanggal',[$request->start, $request->end])->get();
+
+        return view('agenda.getdate', $data);
     }
 
     /**

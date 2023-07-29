@@ -39,13 +39,9 @@
                             <select name="kategori" class="form-control">
                                 <option selected>Pilih Kategori</option>
                                 @foreach ($category as $ct)
-                                    <option value="{{ $ct->namakategori }}">{{ $ct->namakategori }}</option>
+                                    <option value="{{ $ct->id }}">{{ $ct->namakategori }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Tempat</label>
-                            <input type="text" name="tempat" class="form-control">
                         </div>
                         <div class="form-group mx-sm-3 row">
                             <div class="col-xs-4 mb-3">
@@ -83,7 +79,7 @@
 
 
                             <input type="hidden" type="text" name="status" placeholder="Status" value="Penjadwalan Awal">
-
+                      
 
                         <div class="question">
                             <p>Sifat<span class="required"></span></p>

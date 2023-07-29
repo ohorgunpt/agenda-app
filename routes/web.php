@@ -31,7 +31,7 @@ Route::put('agenda/{id}/update', [App\Http\Controllers\AgendaController::class,'
 Route::get('agenda-detail/{id}',[\App\Http\Controllers\AgendaController::class,'showdetail'])->name('agenda.showdetail');
 //oute untuk destroy Agenda
 Route::get('agenda/destroy/{id}', [\App\Http\Controllers\AgendaController::class,'destroy'])->name('agenda.destroy');
-
+Route::post('select',[App\Http\Controllers\AgendaController::class, 'getDate'])->name('agenda.getdate');
 
 //Route baru
 Route::get('hello', function() {
