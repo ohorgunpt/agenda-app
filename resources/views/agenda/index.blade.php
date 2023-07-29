@@ -34,17 +34,8 @@
                                       <div class="col">
                                           <div class="input-group">
                                               <input type="date" name="end" class="form-control">
-
                                           </div>
                                       </div>
-
-
-                                      <div class="col">
-                                          <select name="" class="form-control" id="">
-                                              <option value="">Semua Agenda</option>
-                                          </select>
-                                      </div>
-
                                       <div class="col">
                                           <div class="input-group">
                                               <select name="" class="form-control" id="">
@@ -59,6 +50,7 @@
                                               </select>
                                           </div>
                                       </div>
+
                                       <div class="col">
                                           <input type="text" name="q" placeholder="Cari Disini ..."
                                               class="form-control">

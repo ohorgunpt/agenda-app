@@ -27,7 +27,7 @@ class AgendaController extends Controller
     {
         $units = Unit::all();
 
-        // $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
+        $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
 
         $agenda = Agenda::whereDate('tanggal',Carbon::now())->get();
 
@@ -36,8 +36,19 @@ class AgendaController extends Controller
 
     public function getDate(Request $request)
     {
+        //kategori
+        $category = Category::all();
 
-        $data['result']= Agenda::whereBetween('tanggal',[$request->start, $request->end])->get();
+        //agenda with text
+        if ($request->q) {
+            $keyword = $request->input('q');
+            $data = Agenda::where('agenda','like','%'. $keyword . '%');
+        }
+        //tanggal
+        if ($request->start && $request->end) {
+            $data= Agenda::whereBetween('tanggal',[$request->start, $request->end])->get();
+
+        }
 
         return view('agenda.getdate', $data);
     }
