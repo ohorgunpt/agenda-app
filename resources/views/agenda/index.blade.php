@@ -105,9 +105,9 @@
                                                       <td>{{ $a->selesai }}</td>
                                                       <td>
                                                           <ul>
-                                                              @foreach ($a->pendamping()->get() as $item)
+                                                              {{-- @foreach ($a->pendamping()->get() as $item)
                                                                   <li>{{ $item->namaUser->name }}</li>
-                                                              @endforeach
+                                                              @endforeach --}}
                                                           </ul>
 
                                                       </td>
@@ -228,9 +228,9 @@
                                                       <td>{{ $a->selesai }}</td>
                                                       <td>
                                                           <ul>
-                                                              @foreach ($a->pendamping()->get() as $item)
+                                                              {{-- @foreach ($a->pendamping()->get() as $item)
                                                                   <li>{{ $item->namaUser->name }}</li>
-                                                              @endforeach
+                                                              @endforeach --}}
                                                           </ul>
                                                       </td>
                                                       <td>{{ $a->keterangan }}</td>

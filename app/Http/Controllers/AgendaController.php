@@ -27,10 +27,18 @@ class AgendaController extends Controller
     {
         $units = Unit::all();
 
-        $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
-
-        $agenda = Agenda::whereDate('tanggal',Carbon::now())->get();
-
+        // $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
+        $agenda = DB::table('agendas')
+                  ->join('units','units.id','=','agendas.unit_id')
+                   ->join('add_pedampings','add_pedampings.agenda_id','=','agendas.id')
+                //    ->leftJoin('agendas','add_pedampings.user_id','=','users.id')
+                  ->where('unit_id','=',Auth::user()->unit_id)
+                  ->whereDate('tanggal','=', Carbon::now())
+                  ->get();
+                //   ->where('units.id','=',3)
+                //   ->where('tanggal','=',Carbon::now())->get();
+        // $agenda = Agenda::whereDate('tanggal',Carbon::now())->get();
+        // dd($agenda);
         return view('agenda.index', compact('agenda', 'units'));
     }
 

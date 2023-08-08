@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
                 'email'=>'tu_sestama@seeder.com',
                 'password'=>Hash::make('password'),
                 'role'=>'tu_sestama',
-                'unit_id' =>2,
+                'unit_id' =>3,
 
             ],
         ];
