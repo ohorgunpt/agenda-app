@@ -113,7 +113,7 @@
                                         @if (Auth::user()->role == 'tu_kepala' || Auth::user()->role == 'dsp' || Auth::user()->role == 'humas')
                                             {{-- <h1>{{$b->agenda}}</h1> --}}
 
-                                            @foreach ($data as $a)
+                                            @foreach ($result as $a)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ Carbon\Carbon::parse($a->tanggal)->translatedFormat('l, d F Y') }}

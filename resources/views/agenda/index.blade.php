@@ -19,7 +19,7 @@
               <div class="row">
                   <div class="col-12">
                       <div class="card">
-                          @if (Auth::user()->role == 'tu_kepala')
+                          @if (Auth::user()->role == 'tu_kepala' || Auth::user()->role == 'tu_sestama')
                               <div class="card-header">
                                   <a href="{{ route('agenda.create') }}" class="btn btn-primary">Add Agenda</a>
                                   &nbsp;&nbsp;
@@ -56,7 +56,7 @@
                                               class="form-control">
                                       </div>
                                       <div class="col">
-                                          <button class="btn btn-success" type="submit">Cari Disini</button>
+                                          <button class="btn btn-success" type="submit">Search...</button>
                                       </div>
                                   </form>
                               </div>

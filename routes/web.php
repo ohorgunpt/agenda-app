@@ -23,6 +23,7 @@ Route::get('/', function () {
 //Route to Agenda
 // Route::resource('agenda', \App\Http\Controllers\AgendaController::class);
 Route::get('agenda-index', [\App\Http\Controllers\AgendaController::class,'index'])->name('agenda.index');
+Route::get('agenda-all', [App\Http\Controllers\AgendaController::class,'index_sestama'])->name('agenda_all.index');
 Route::get('agenda', [App\Http\Controllers\AgendaController::class,'create'])->name('agenda.create');
 Route::post('category', [App\Http\Controllers\CategoryController::class,'store'])->name('category.store');
 Route::get('agenda/{id}/edit', [App\Http\Controllers\AgendaController::class,'edit'])->name('agenda.edit');
@@ -91,6 +92,7 @@ Route::get('/search', [AgendaController::class, 'search'])->name('search');
 
 //route ketegory
 Route::get('category', [App\Http\Controllers\CategoryController::class,'index'])->name('category.index');
+
 Route::get('cat-create', [App\Http\Controllers\CategoryController::class,'create'])->name('category.create');
 Route::post('category', [App\Http\Controllers\CategoryController::class,'store'])->name('category.store');
 //route test

@@ -14,13 +14,40 @@ class KategoriSeeder extends Seeder
         //
         $kategori = [
             [
-           'namakategori'=>'rapat',
+           'namakategori'=>'Acara',
         ],
         [
-            'namakategori'=>'audiensi',
+            'namakategori'=>'Agenda Khusus',
          ],
          [
-            'namakategori'=>'dinas luar',
+            'namakategori'=>'Audiensi',
+         ],
+         [
+            'namakategori'=>'Briefing',
+         ],
+         [
+            'namakategori'=>'Jumpa Pers (Termasuk Door Stop, Wawancara Media)',
+         ],
+         [
+            'namakategori'=>'Kunjungan Kerja Dalam Negeri',
+         ],
+         [
+            'namakategori'=>'Kunjungan Kerja Luar Negeri',
+         ],
+         [
+            'namakategori'=>'Rapat',
+         ],
+         [
+            'namakategori'=>'Upacara',
+         ],
+         [
+            'namakategori'=>'Upacara Pelantikan',
+         ],
+         [
+            'namakategori'=>'Wawancara kandidat',
+         ],
+         [
+            'namakategori'=>'Unclassified',
          ],
     ];
     foreach ($kategori as $value) {
