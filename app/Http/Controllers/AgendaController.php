@@ -27,27 +27,28 @@ class AgendaController extends Controller
     {
         $units = Unit::all();
 
-
-
-        // $agendasearch = Agenda::select();
-
         $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
-        if($request->start || $request->end){
-            $start = Carbon::parse($request->start)->toDateTimeString();
-            $end = Carbon::parse($request->end)->toDateTimeString();
-            $data= Agenda::whereBetween('tanggal',[$start, $end])->get();
 
-        }else {
-            $data = Agenda::latest()->get();
-        }
+        $agenda = Agenda::whereDate('tanggal',Carbon::now())->get();
 
-        return view('agenda.index', compact('agenda', 'units','data'));
+        return view('agenda.index', compact('agenda', 'units'));
     }
 
     public function getDate(Request $request)
     {
+        //kategori
+        $category = Category::all();
 
-        $data['result']= Agenda::whereBetween('tanggal',[$request->start, $request->end])->get();
+        //agenda with text
+        if ($request->q) {
+            $keyword = $request->input('q');
+            $data = Agenda::where('agenda','like','%'. $keyword . '%');
+        }
+        //tanggal
+        if ($request->start && $request->end) {
+            $data= Agenda::whereBetween('tanggal',[$request->start, $request->end])->get();
+
+        }
 
         return view('agenda.getdate', $data);
     }
@@ -83,7 +84,7 @@ class AgendaController extends Controller
             'tanggal' => 'required',
             'mulai' => 'required',
             'selesai' => 'required',
-            // 'pendamping' => 'required',
+            'tempat' => 'required',
             'keterangan' => 'required',
             'status' => 'required',
             'unit_id' => 'required'
@@ -191,7 +192,7 @@ class AgendaController extends Controller
             'tanggal' => 'required',
             'mulai' => 'required',
             'selesai' => 'required',
-            // 'pendamping' => 'required',
+            'tempat' => 'required',
             'keterangan' => 'required',
             'status' => 'required',
             'unit_id' => 'required'
@@ -202,7 +203,7 @@ class AgendaController extends Controller
         $agenda->tanggal = $request->input('tanggal');
         $agenda->mulai = $request->input('mulai');
         $agenda->selesai = $request->input('selesai');
-        // $agenda->pendamping = $request->input('pendamping');
+        $agenda->tempat = $request->input('tempat');
         $agenda->keterangan = $request->input('keterangan');
         $agenda->status = $request->input('status');
         $agenda->unit_id = $request->input('unit_id');

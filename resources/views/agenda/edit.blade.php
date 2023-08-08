@@ -65,12 +65,17 @@
                                     $category = Category::all();
                                 @endphp
                                 <select name="kategori" id="">
-                                    <option value="{{ $agenda->kategori  }}"  selected >{{ $agenda->kategori  }}</option>
+                                    <option value="{{ $agenda->kategori }}" selected>{{ $agenda->kategori }}</option>
                                     @foreach ($category as $ct)
-                                    <option value="{{ $ct->namakategori }}">{{ $ct->namakategori }}</option>
-                                @endforeach
+                                        <option value="{{ $ct->namakategori }}">{{ $ct->namakategori }}</option>
+                                    @endforeach
                                 </select>
                                 {{-- </select> --}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tempat</td>
+                            <td><input type="text" name="tempat" value="{{ $agenda->tempat }}" class="form-control">
                             </td>
                         </tr>
                         <tr>
@@ -117,15 +122,8 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $daftar_pendamping->namaPendamping->name }}</td>
-                                                    {{-- <td> --}}
-                                                        {{-- <form
-                                                            action="{{ route('pendamping.destroy', $daftar_pendamping->id) }}"
-                                                            method="post">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                                        </form> --}}
-                                                    {{-- </td> --}}
+                                                    <td><a href="{{ route('pendamping.destroy', $daftar_pendamping->id) }}"
+                                                            class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -144,8 +142,9 @@
                             <td>Status</td>
                             <td>
                                 {{-- <input class="form-control" value="{{ $agenda->status }}" type="text" name="status"> --}}
-                                <select name="status" id="">
-                                    <option value="{{$agenda->status}}" selected="selected">{{$agenda->status}}</option>
+                                <select name="status" class="form-control">
+                                    <option value="{{ $agenda->status }}" selected="selected">{{ $agenda->status }}
+                                    </option>
                                     <option value="Terlaksana">Terlaksana</option>
                                     <option value="Ditunda">Ditunda</option>
                                     <option value="Dibatalkan">Dibatalkan</option>
