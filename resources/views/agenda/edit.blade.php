@@ -77,7 +77,7 @@
                             <td>Tempat</td>
                             <td><input type="text" name="tempat" value="{{ $agenda->tempat }}" class="form-control"></td>
                         </tr>
-                        <tr>
+                        <tr>ph
                             <td>Tanggal</td>
                             <td>
                                 <input class="form-control" value="{{ $agenda->tanggal }}" type="date" name="tanggal">

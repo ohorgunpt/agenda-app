@@ -34,21 +34,33 @@ class AgendaController extends Controller
         return view('agenda.index', compact('agenda', 'units'));
     }
 
+// sestama
+public function index_sestama(Request $request)
+    {
+        $units = Unit::all();
+
+        $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
+
+        $agenda = Agenda::all();
+
+        return view('agenda_all.index', compact('agenda', 'units'));
+    }
+
     public function getDate(Request $request)
     {
         //kategori
-        $category = Category::all();
+        // $category = Category::all();
 
         //agenda with text
-        if ($request->q) {
-            $keyword = $request->input('q');
-            $data = Agenda::where('agenda','like','%'. $keyword . '%');
-        }
+        // if ($request->q) {
+        //     $keyword = $request->input('q');
+        //     $data = Agenda::where('agenda','like','%'. $keyword . '%');
+        // }
         //tanggal
-        if ($request->start && $request->end) {
-            $data= Agenda::whereBetween('tanggal',[$request->start, $request->end])->get();
 
-        }
+            $data['result'] = Agenda::whereBetween('tanggal',[$request->start, $request->end])->get();
+
+
 
         return view('agenda.getdate', $data);
     }
