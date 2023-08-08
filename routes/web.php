@@ -23,6 +23,7 @@ Route::get('/', function () {
 //Route to Agenda
 // Route::resource('agenda', \App\Http\Controllers\AgendaController::class);
 Route::get('agenda-index', [\App\Http\Controllers\AgendaController::class,'index'])->name('agenda.index');
+Route::get('agenda-all', [App\Http\Controllers\AgendaController::class,'index_sestama'])->name('agenda_all.index');
 Route::get('agenda', [App\Http\Controllers\AgendaController::class,'create'])->name('agenda.create');
 Route::post('category', [App\Http\Controllers\CategoryController::class,'store'])->name('category.store');
 Route::get('agenda/{id}/edit', [App\Http\Controllers\AgendaController::class,'edit'])->name('agenda.edit');
@@ -31,7 +32,7 @@ Route::put('agenda/{id}/update', [App\Http\Controllers\AgendaController::class,'
 Route::get('agenda-detail/{id}',[\App\Http\Controllers\AgendaController::class,'showdetail'])->name('agenda.showdetail');
 //oute untuk destroy Agenda
 Route::get('agenda/destroy/{id}', [\App\Http\Controllers\AgendaController::class,'destroy'])->name('agenda.destroy');
-
+Route::post('select',[App\Http\Controllers\AgendaController::class, 'getDate'])->name('agenda.getdate');
 
 //Route baru
 Route::get('hello', function() {
@@ -85,15 +86,13 @@ Route::resource('index', \App\Http\Controllers\PointerController::class);
 //Route to Pointer
 Route::resource('data_dukung', \App\Http\Controllers\DatadukungController::class);
 Route::get('data_dukung/create/{id}', [\App\Http\Controllers\DatadukungController::class,'create'])->name('data_dukung.create');
-//Route to Pointer
-// Route::resource('list', \App\Http\Controllers\DatadukungController::class);
-
 
 //Route search
 Route::get('/search', [AgendaController::class, 'search'])->name('search');
 
 //route ketegory
 Route::get('category', [App\Http\Controllers\CategoryController::class,'index'])->name('category.index');
+
 Route::get('cat-create', [App\Http\Controllers\CategoryController::class,'create'])->name('category.create');
 Route::post('category', [App\Http\Controllers\CategoryController::class,'store'])->name('category.store');
 //route test
@@ -112,7 +111,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route tambah Pendamping
 Route::post('/pendamping', [App\Http\Controllers\AddPendampingController::class, 'store'])->name('tambahpendamping.store');
 //route destroy pendamping
-Route::delete('pendamping/destroy/{id}', [\App\Http\Controllers\AddPendampingController::class,'destroy'])->name('pendamping.destroy');
+Route::get('pendamping/destroy/{id}', [\App\Http\Controllers\AddPendampingController::class,'destroy'])->name('pendamping.destroy');
 //Route to Data Humas
 // Route::get('humas', [App\Http\Controllers\HumasController::class, 'index'])->name('datahumas.index');
 Route::get('humas/create/{id}', [App\Http\Controllers\HumasController::class, 'create'])->name('humas.create');

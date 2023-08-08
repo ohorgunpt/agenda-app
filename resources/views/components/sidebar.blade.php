@@ -1,9 +1,9 @@
 <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-      <a href="index.html">Aplikasi TPN</a>
+      <a href="#">A G E N D A</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-      <a href="index.html">TPN</a>
+      <a href="#"></a>
     </div>
     <ul class="sidebar-menu">
         <li class="menu-header">Dashboard</li>
@@ -19,12 +19,13 @@
             <li><a class="nav-link" href="{{ route('personel.index') }}">Data Personel</a></li>
             <li><a class="nav-link" href="{{route('agenda.index')}}">Data Agenda</a></li>
             <li><a class="nav-link" href="{{route('category.index')}}">Data Kategori</a></li>
+
             {{-- <li><a class="nav-link" href="{{ route('data_dukung.index') }}">Data Dukung</a></li> --}}
 
             @elseif (Auth::user()->role=='tu_kepala')
             <li><a class="nav-link" href="{{route('agenda.index')}}">Data Agenda</a></li>
             <li><a class="nav-link" href="{{route('category.index')}}">Data Kategori</a></li>
-            <li><a href="" class="nav-link">Page baru</a></li>
+            {{-- <li><a href="" class="nav-link">Page baru</a></li> --}}
 
             @elseif (Auth::user()->role =='dsp')
             <li><a class="nav-link" href="{{route('agenda.index')}}">Data Agenda</a></li>
@@ -37,10 +38,12 @@
             @elseif (Auth::user()->role =='protokol')
             <li><a class="nav-link" href="{{route('agenda.index')}}">Data Agenda</a></li>
             <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
+            @elseif (Auth::user()->role =='tu_sestama')
+            <li><a class="nav-link" href="{{route('agenda_all.index')}}">Agenda Sestama</a></li>
 
             @endif
           </ul>
         </li>
-        <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
+        {{-- <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li> --}}
     </ul>
   </aside>

@@ -7,58 +7,21 @@
   @section('content')
       <section class="section">
           <div class="section-header">
-              {{-- {{ Auth::user()->unit_id }} --}}
-              @php
-                  use App\Models\Unit;
+            {{-- {{ Auth::user()->unit_id }} --}}
+            @php
+                use App\Models\Unit;
 
-                  $dataUnit = Unit::all();
-              @endphp
-              <h1>Data Agenda {{ Auth::user()->namaUnit->nama_unit }}</h1> {{-- <h1>Data Agenda  </h1> --}}
+                $dataUnit = Unit::all();
+            @endphp
+             <h1>Data Agenda {{ Auth::user()->namaUnit->nama_unit }}</h1> {{-- <h1>Data Agenda  </h1> --}}
           </div>
           <div class="section-body">
               <div class="row">
                   <div class="col-12">
                       <div class="card">
-                          @if (Auth::user()->role == 'tu_kepala' || Auth::user()->role == 'tu_sestama')
+                          @if (Auth::user()->role == 'tu_kepala')
                               <div class="card-header">
                                   <a href="{{ route('agenda.create') }}" class="btn btn-primary">Add Agenda</a>
-                                  &nbsp;&nbsp;
-                                  <form action="{{ route('agenda.getdate') }}" class="row" method="get">
-                                      @csrf
-                                      <div class="col">
-                                          <div class="input-group">
-                                              <input type="date" name="start" class="form-control">
-
-                                          </div>
-                                      </div>
-                                      <div class="col">
-                                          <div class="input-group">
-                                              <input type="date" name="end" class="form-control">
-                                          </div>
-                                      </div>
-                                      <div class="col">
-                                          <div class="input-group">
-                                              <select name="" class="form-control" id="">
-                                                  <option value="">Semua Kategori</option>
-                                              </select>
-                                          </div>
-                                      </div>
-                                      <div class="col">
-                                          <div class="input-group">
-                                              <select name="" class="form-control" id="">
-                                                  <option value="">Semua Status</option>
-                                              </select>
-                                          </div>
-                                      </div>
-
-                                      <div class="col">
-                                          <input type="text" name="q" placeholder="Cari Disini ..."
-                                              class="form-control">
-                                      </div>
-                                      <div class="col">
-                                          <button class="btn btn-success" type="submit">Search...</button>
-                                      </div>
-                                  </form>
                               </div>
                           @elseif(Auth::user()->role == 'tu_deputi_1')
                               <div class="card-header">
@@ -79,7 +42,6 @@
                                               <th>Tanggal</th>
                                               <th>Agenda</th>
                                               <th>Kategori</th>
-                                              <th>Tempat</th>
                                               <th>Mulai</th>
                                               <th>Selesai</th>
                                               <th>Pendamping</th>
@@ -89,18 +51,29 @@
                                           </tr>
                                       </thead>
                                       <tbody>
+                                          @php
 
+                                              use App\Models\Agenda;
+                                              // $user - Auth::user()->unit_id;
+                                              $agendaUser = Agenda::where('unit_id', '=', Auth::user()->unit_id);
+
+                                              //   $pendampings = DB::table('add_pedampings')
+
+                                              //                     ->leftJoin('users','users.id','=','add_pedampings.user_id')
+                                              //                     ->first();
+                                              //   $pendamping = AddPedamping::where('agenda_id', '=', 'id', 'user_id','=','id')->get();
+
+                                          @endphp
                                           @if (Auth::user()->role == 'tu_kepala' || Auth::user()->role == 'dsp' || Auth::user()->role == 'humas')
                                               {{-- <h1>{{$b->agenda}}</h1> --}}
 
                                               @foreach ($agenda as $a)
                                                   <tr>
                                                       <td>{{ $loop->iteration }}</td>
-                                                      <td>{{ Carbon\Carbon::parse($a->tanggal) }}
+                                                      <td>{{ Carbon\Carbon::parse($a->tanggal)->translatedFormat('l, d F Y') }}
                                                       </td>
                                                       <td>{{ $a->agenda }}</td>
                                                       <td>{{ $a->kategori }}</td>
-                                                      <td>{{ $a->tempat }}</td>
                                                       <td>{{ $a->mulai }}</td>
                                                       <td>{{ $a->selesai }}</td>
                                                       <td>
@@ -193,7 +166,7 @@
                                                                   class="btn btn-primary" title="Detail"><i
                                                                       class="fas fa-folder-open"></i></a>
                                                           @elseif (Auth::user()->role == 'humas')
-                                                              <a href="{{ route('humas.create', $a->id) }}"
+                                                              <a href="{{route('humas.create', $a->id)}}"
                                                                   class="btn btn-icon icon-left btn-warning"
                                                                   title="Link Humas"><i class="fas fa-file-word"></i></a>
 
@@ -214,6 +187,7 @@
                                                   </tr>
                                               @endforeach
                                               {{-- ===================================================== --}}
+
                                           @elseif (Auth::user()->role == 'tu_sestama')
                                               {{-- <h1>{{$b->agenda}}</h1> --}}
 
@@ -227,11 +201,11 @@
                                                       <td>{{ $a->mulai }}</td>
                                                       <td>{{ $a->selesai }}</td>
                                                       <td>
-                                                          <ul>
-                                                              @foreach ($a->pendamping()->get() as $item)
-                                                                  <li>{{ $item->namaUser->name }}</li>
-                                                              @endforeach
-                                                          </ul>
+                                                        <ul>
+                                                            @foreach ($a->pendamping()->get() as $item)
+                                                                <li>{{ $item->namaUser->name }}</li>
+                                                            @endforeach
+                                                        </ul>
                                                       </td>
                                                       <td>{{ $a->keterangan }}</td>
                                                       <td>{{ $a->status }}</td>
