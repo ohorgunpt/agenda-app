@@ -75,7 +75,8 @@
                         </tr>
                         <tr>
                             <td>Tempat</td>
-                            <td><input type="text" name="tempat" value="{{ $agenda->tempat }}" class="form-control"></td>
+                            <td><input type="text" name="tempat" value="{{ $agenda->tempat }}" class="form-control">
+                            </td>
                         </tr>
                         <tr>ph
                             <td>Tanggal</td>
@@ -121,15 +122,8 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $daftar_pendamping->namaPendamping->name }}</td>
-                                                    {{-- <td> --}}
-                                                    {{-- <form
-                                                            action="{{ route('pendamping.destroy', $daftar_pendamping->id) }}"
-                                                            method="post">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                                        </form> --}}
-                                                    {{-- </td> --}}
+                                                    <td><a href="{{ route('pendamping.destroy', $daftar_pendamping->id) }}"
+                                                            class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -148,7 +142,7 @@
                             <td>Status</td>
                             <td>
                                 {{-- <input class="form-control" value="{{ $agenda->status }}" type="text" name="status"> --}}
-                                <select name="status" id="">
+                                <select name="status" class="form-control">
                                     <option value="{{ $agenda->status }}" selected="selected">{{ $agenda->status }}
                                     </option>
                                     <option value="Terlaksana">Terlaksana</option>

@@ -86,9 +86,6 @@ Route::resource('index', \App\Http\Controllers\PointerController::class);
 //Route to Pointer
 Route::resource('data_dukung', \App\Http\Controllers\DatadukungController::class);
 Route::get('data_dukung/create/{id}', [\App\Http\Controllers\DatadukungController::class,'create'])->name('data_dukung.create');
-//Route to Pointer
-// Route::resource('list', \App\Http\Controllers\DatadukungController::class);
-
 
 //Route search
 Route::get('/search', [AgendaController::class, 'search'])->name('search');
@@ -114,7 +111,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route tambah Pendamping
 Route::post('/pendamping', [App\Http\Controllers\AddPendampingController::class, 'store'])->name('tambahpendamping.store');
 //route destroy pendamping
-Route::delete('pendamping/destroy/{id}', [\App\Http\Controllers\AddPendampingController::class,'destroy'])->name('pendamping.destroy');
+Route::get('pendamping/destroy/{id}', [\App\Http\Controllers\AddPendampingController::class,'destroy'])->name('pendamping.destroy');
 //Route to Data Humas
 // Route::get('humas', [App\Http\Controllers\HumasController::class, 'index'])->name('datahumas.index');
 Route::get('humas/create/{id}', [App\Http\Controllers\HumasController::class, 'create'])->name('humas.create');
