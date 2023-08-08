@@ -7,13 +7,13 @@
   @section('content')
       <section class="section">
           <div class="section-header">
-            {{-- {{ Auth::user()->unit_id }} --}}
-            @php
-                use App\Models\Unit;
+              {{-- {{ Auth::user()->unit_id }} --}}
+              @php
+                  use App\Models\Unit;
 
-                $dataUnit = Unit::all();
-            @endphp
-             <h1>Data Agenda {{ Auth::user()->namaUnit->nama_unit }}</h1> {{-- <h1>Data Agenda  </h1> --}}
+                  $dataUnit = Unit::all();
+              @endphp
+              <h1>Data Agenda {{ Auth::user()->namaUnit->nama_unit }}</h1> {{-- <h1>Data Agenda  </h1> --}}
           </div>
           <div class="section-body">
               <div class="row">
@@ -42,6 +42,7 @@
                                               <th>Tanggal</th>
                                               <th>Agenda</th>
                                               <th>Kategori</th>
+
                                               <th>Mulai</th>
                                               <th>Selesai</th>
                                               <th>Pendamping</th>
@@ -74,6 +75,7 @@
                                                       </td>
                                                       <td>{{ $a->agenda }}</td>
                                                       <td>{{ $a->kategori }}</td>
+
                                                       <td>{{ $a->mulai }}</td>
                                                       <td>{{ $a->selesai }}</td>
                                                       <td>
@@ -166,7 +168,7 @@
                                                                   class="btn btn-primary" title="Detail"><i
                                                                       class="fas fa-folder-open"></i></a>
                                                           @elseif (Auth::user()->role == 'humas')
-                                                              <a href="{{route('humas.create', $a->id)}}"
+                                                              <a href="{{ route('humas.create', $a->id) }}"
                                                                   class="btn btn-icon icon-left btn-warning"
                                                                   title="Link Humas"><i class="fas fa-file-word"></i></a>
 
@@ -187,7 +189,6 @@
                                                   </tr>
                                               @endforeach
                                               {{-- ===================================================== --}}
-
                                           @elseif (Auth::user()->role == 'tu_sestama')
                                               {{-- <h1>{{$b->agenda}}</h1> --}}
 
@@ -201,11 +202,11 @@
                                                       <td>{{ $a->mulai }}</td>
                                                       <td>{{ $a->selesai }}</td>
                                                       <td>
-                                                        <ul>
-                                                            @foreach ($a->pendamping()->get() as $item)
-                                                                <li>{{ $item->namaUser->name }}</li>
-                                                            @endforeach
-                                                        </ul>
+                                                          <ul>
+                                                              @foreach ($a->pendamping()->get() as $item)
+                                                                  <li>{{ $item->namaUser->name }}</li>
+                                                              @endforeach
+                                                          </ul>
                                                       </td>
                                                       <td>{{ $a->keterangan }}</td>
                                                       <td>{{ $a->status }}</td>
