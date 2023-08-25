@@ -233,7 +233,10 @@
                                                               {{-- @foreach ($a->pendamping()->get() as $item)
                                                                   <li>{{ $item->namaUser->name }}</li>
                                                               @endforeach --}}
+
                                                               {{-- {{$a->name}} --}}
+
+
                                                           </ul>
                                                       </td>
                                                       <td>{{ $a->keterangan }}</td>

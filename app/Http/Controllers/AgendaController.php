@@ -11,7 +11,7 @@ use App\Models\Personel;
 use App\Models\User;
 use App\Models\Sambutan;
 use App\Models\Pointer;
-use App\Models\AddPedamping;
+
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Carbon\Carbon;
@@ -29,11 +29,14 @@ class AgendaController extends Controller
 
         // $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
         $agenda = DB::table('agendas')
+
                       ->where('unit_id','=', Auth::user()->unit_id)
-                      ->join('add_pedampings','add_pedampings.agenda_id','=','agendas.id')
+                    //   ->join('add_pedampings','add_pedampings.agenda_id','=','agendas.id')
                       ->whereDate('tanggal','=',Carbon::now())->get();
 
+        // $agenda = Agenda::whereDate('tanggal',Carbon::now())->get()
         // $agenda = Agenda::whereDate('tanggal',Carbon::now())->get();
+        // dd($agenda);
 
         return view('agenda.index', compact('agenda', 'units'));
     }

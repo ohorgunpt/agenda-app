@@ -23,7 +23,7 @@
                             <div class="card-header">
                                 <a href="{{ route('agenda.create') }}" class="btn btn-primary">Add Agenda</a>
                                 &nbsp;&nbsp;
-                                <form action="{{ route('agenda.getdate') }}" class="row" method="POST">
+                                <form action="{{ route('agenda.getdate') }}" class="row" method="GET">
                                     @csrf
                                     <div class="col">
                                         <div class="input-group">
