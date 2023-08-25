@@ -27,9 +27,13 @@ class AgendaController extends Controller
     {
         $units = Unit::all();
 
-        $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
+        // $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
+        $agenda = DB::table('agendas')
+                      ->where('unit_id','=', Auth::user()->unit_id)
+                      ->join('add_pedampings','add_pedampings.agenda_id','=','agendas.id')
+                      ->whereDate('tanggal','=',Carbon::now())->get();
 
-        $agenda = Agenda::whereDate('tanggal',Carbon::now())->get();
+        // $agenda = Agenda::whereDate('tanggal',Carbon::now())->get();
 
         return view('agenda.index', compact('agenda', 'units'));
     }

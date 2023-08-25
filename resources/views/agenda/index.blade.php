@@ -105,9 +105,9 @@
                                                       <td>{{ $a->selesai }}</td>
                                                       <td>
                                                           <ul>
-                                                              @foreach ($a->pendamping()->get() as $item)
+                                                              {{-- @foreach ($a->pendamping()->get() as $item)
                                                                   <li>{{ $item->namaUser->name }}</li>
-                                                              @endforeach
+                                                              @endforeach --}}
                                                           </ul>
 
                                                       </td>
@@ -217,7 +217,9 @@
                                           @elseif (Auth::user()->role == 'tu_sestama')
                                               {{-- <h1>{{$b->agenda}}</h1> --}}
 
+
                                               @foreach ($agenda as $a)
+
                                                   <tr>
                                                       <td>{{ $loop->iteration }}</td>
                                                       <td>{{ Carbon\Carbon::parse($a->tanggal)->translatedFormat('l, d F Y') }}
@@ -228,9 +230,10 @@
                                                       <td>{{ $a->selesai }}</td>
                                                       <td>
                                                           <ul>
-                                                              @foreach ($a->pendamping()->get() as $item)
+                                                              {{-- @foreach ($a->pendamping()->get() as $item)
                                                                   <li>{{ $item->namaUser->name }}</li>
-                                                              @endforeach
+                                                              @endforeach --}}
+                                                              {{-- {{$a->name}} --}}
                                                           </ul>
                                                       </td>
                                                       <td>{{ $a->keterangan }}</td>
