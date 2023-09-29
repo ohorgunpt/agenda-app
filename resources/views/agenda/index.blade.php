@@ -18,11 +18,16 @@
           <div class="section-body">
               <div class="row">
                   <div class="col-12">
+                      @php
+                          use App\Models\Category;
+                          $agendacat = Category::all();
+                      @endphp
                       <div class="card">
                           @if (Auth::user()->role == 'tu_kepala' || Auth::user()->role == 'tu_sestama')
                               <div class="card-header">
                                   <a href="{{ route('agenda.create') }}" class="btn btn-primary">Add Agenda</a>
                                   &nbsp;&nbsp;
+
                                   <form action="{{ route('agenda.getdate') }}" class="row" method="get">
                                       @csrf
                                       <div class="col">
@@ -38,15 +43,22 @@
                                       </div>
                                       <div class="col">
                                           <div class="input-group">
-                                              <select name="" class="form-control" id="">
+                                              <select name="kategori" class="form-control" id="">
+
                                                   <option value="">Semua Kategori</option>
+                                                  @foreach ($agendacat as $cat)
+                                                      <option   value="{{ $cat->namakategori }}">{{ $cat->namakategori }} </option>
+                                                  @endforeach
                                               </select>
                                           </div>
                                       </div>
                                       <div class="col">
                                           <div class="input-group">
-                                              <select name="" class="form-control" id="">
-                                                  <option value="">Semua Status</option>
+                                              <select name="status" class="form-control" id="">
+                                                <option value="Penjadwalan Awal">Penjadwalan Awal</option>
+                                                <option value="Terlaksana">Terlaksana</option>
+                                                <option value="Ditunda">Ditunda</option>
+                                                <option value="Dibatalkan">Dibatalkan</option>
                                               </select>
                                           </div>
                                       </div>
@@ -219,7 +231,6 @@
 
 
                                               @foreach ($agenda as $a)
-
                                                   <tr>
                                                       <td>{{ $loop->iteration }}</td>
                                                       <td>{{ Carbon\Carbon::parse($a->tanggal)->translatedFormat('l, d F Y') }}

@@ -235,7 +235,7 @@
                                         @elseif (Auth::user()->role == 'tu_sestama')
                                             {{-- <h1>{{$b->agenda}}</h1> --}}
 
-                                            @foreach ($agenda as $a)
+                                            @foreach ($result as $a)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ Carbon\Carbon::parse($a->tanggal)->translatedFormat('l, d F Y') }}

@@ -65,7 +65,12 @@ public function index_sestama(Request $request)
         // }
         //tanggal
 
-            $data['result'] = Agenda::whereBetween('tanggal',[$request->start, $request->end])->get();
+            $data['result'] = Agenda::whereBetween('tanggal',[$request->start, $request->end])
+                                    ->where('unit_id','=',Auth::user()->unit_id)
+                                    ->where('kategori','like','%'. $request->kategori . '%')
+                                    ->where('status','like','%'. $request->status . '%')
+                                    ->where('agenda','like','%'. $request->q . '%')
+                                    ->get();
 
 
 
