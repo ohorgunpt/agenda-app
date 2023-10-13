@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Sambutan;
 use App\Models\Pointer;
 use App\Models\AddPedamping;
+
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Carbon\Carbon;
@@ -27,9 +28,16 @@ class AgendaController extends Controller
     {
         $units = Unit::all();
 
-        $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
+        // $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
+        $agenda = DB::table('agendas')
 
-        $agenda = Agenda::whereDate('tanggal',Carbon::now())->get();
+                      ->where('unit_id','=', Auth::user()->unit_id)
+                    //   ->join('add_pedampings','add_pedampings.agenda_id','=','agendas.id')
+                      ->whereDate('tanggal','=',Carbon::now())->get();
+
+        // $agenda = Agenda::whereDate('tanggal',Carbon::now())->get()
+        // $agenda = Agenda::whereDate('tanggal',Carbon::now())->get();
+        // dd($agenda);
 
         return view('agenda.index', compact('agenda', 'units'));
     }
@@ -42,6 +50,7 @@ public function index_sestama(Request $request)
         $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
 
         $agenda = Agenda::all();
+
 
         return view('agenda_all.index', compact('agenda', 'units'));
     }
@@ -58,7 +67,13 @@ public function index_sestama(Request $request)
         // }
         //tanggal
 
-            $data['result'] = Agenda::whereBetween('tanggal',[$request->start, $request->end])->get();
+            $data['result'] = Agenda::whereBetween('tanggal',[$request->start, $request->end])
+                                    ->where('unit_id','=',Auth::user()->unit_id)
+                                    ->where('kategori','like','%'. $request->kategori . '%')
+                                    ->where('status','like','%'. $request->status . '%')
+                                    ->where('agenda','like','%'. $request->q . '%')
+                                    ->where('sifat','like','%'. $request->sifat . '%')
+                                    ->get();
 
 
 

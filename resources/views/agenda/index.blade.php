@@ -18,11 +18,16 @@
           <div class="section-body">
               <div class="row">
                   <div class="col-12">
+                      @php
+                          use App\Models\Category;
+                          $agendacat = Category::all();
+                      @endphp
                       <div class="card">
                           @if (Auth::user()->role == 'tu_kepala' || Auth::user()->role == 'tu_sestama')
                               <div class="card-header">
                                   <a href="{{ route('agenda.create') }}" class="btn btn-primary">Add Agenda</a>
                                   &nbsp;&nbsp;
+
                                   <form action="{{ route('agenda.getdate') }}" class="row" method="get">
                                       @csrf
                                       <div class="col">
@@ -38,18 +43,35 @@
                                       </div>
                                       <div class="col">
                                           <div class="input-group">
-                                              <select name="" class="form-control" id="">
+                                              <select name="kategori" class="form-control" id="">
+
                                                   <option value="">Semua Kategori</option>
+                                                  @foreach ($agendacat as $cat)
+                                                      <option   value="{{ $cat->namakategori }}">{{ $cat->namakategori }} </option>
+                                                  @endforeach
                                               </select>
                                           </div>
                                       </div>
                                       <div class="col">
                                           <div class="input-group">
-                                              <select name="" class="form-control" id="">
-                                                  <option value="">Semua Status</option>
+                                              <select name="status" class="form-control" id="">
+                                                <option value="Penjadwalan Awal">Penjadwalan Awal</option>
+                                                <option value="Terlaksana">Terlaksana</option>
+                                                <option value="Ditunda">Ditunda</option>
+                                                <option value="Dibatalkan">Dibatalkan</option>
                                               </select>
                                           </div>
                                       </div>
+                                      <div class="col">
+                                        <div class="input-group">
+                                            <select name="sifat" class="form-control" id="">
+                                                <option value="Umum">Umum</option>
+                                                <option value="Rahasia">Rahasia</option>
+                                                <option value="Pribadi">Pribadi</option>
+                                                <option value="Unclassified">Unclassified</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
                                       <div class="col">
                                           <input type="text" name="q" placeholder="Cari Disini ..."
@@ -105,9 +127,9 @@
                                                       <td>{{ $a->selesai }}</td>
                                                       <td>
                                                           <ul>
-                                                              @foreach ($a->pendamping()->get() as $item)
+                                                              {{-- @foreach ($a->pendamping()->get() as $item)
                                                                   <li>{{ $item->namaUser->name }}</li>
-                                                              @endforeach
+                                                              @endforeach --}}
                                                           </ul>
 
                                                       </td>
@@ -217,6 +239,7 @@
                                           @elseif (Auth::user()->role == 'tu_sestama')
                                               {{-- <h1>{{$b->agenda}}</h1> --}}
 
+
                                               @foreach ($agenda as $a)
                                                   <tr>
                                                       <td>{{ $loop->iteration }}</td>
@@ -228,9 +251,13 @@
                                                       <td>{{ $a->selesai }}</td>
                                                       <td>
                                                           <ul>
-                                                              @foreach ($a->pendamping()->get() as $item)
+                                                              {{-- @foreach ($a->pendamping()->get() as $item)
                                                                   <li>{{ $item->namaUser->name }}</li>
-                                                              @endforeach
+                                                              @endforeach --}}
+
+                                                              {{-- {{$a->name}} --}}
+
+
                                                           </ul>
                                                       </td>
                                                       <td>{{ $a->keterangan }}</td>

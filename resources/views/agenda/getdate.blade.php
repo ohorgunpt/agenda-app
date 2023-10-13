@@ -23,7 +23,7 @@
                             <div class="card-header">
                                 <a href="{{ route('agenda.create') }}" class="btn btn-primary">Add Agenda</a>
                                 &nbsp;&nbsp;
-                                <form action="{{ route('agenda.getdate') }}" class="row" method="POST">
+                                <form action="{{ route('agenda.getdate') }}" class="row" method="GET">
                                     @csrf
                                     <div class="col">
                                         <div class="input-group">
@@ -235,7 +235,7 @@
                                         @elseif (Auth::user()->role == 'tu_sestama')
                                             {{-- <h1>{{$b->agenda}}</h1> --}}
 
-                                            @foreach ($agenda as $a)
+                                            @foreach ($result as $a)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ Carbon\Carbon::parse($a->tanggal)->translatedFormat('l, d F Y') }}

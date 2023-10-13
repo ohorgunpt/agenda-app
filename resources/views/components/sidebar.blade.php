@@ -39,7 +39,8 @@
             <li><a class="nav-link" href="{{route('agenda.index')}}">Data Agenda</a></li>
             <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
             @elseif (Auth::user()->role =='tu_sestama')
-            <li><a class="nav-link" href="{{route('agenda_all.index')}}">Agenda Sestama</a></li>
+            <li><a class="nav-link" href="{{route('agenda.index')}}">Data Agenda</a></li>
+            <li><a class="nav-link" href="{{route('agenda_all.index')}}">Agenda Ka. BPOM</a></li>
 
             @endif
           </ul>
