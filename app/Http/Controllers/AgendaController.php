@@ -27,17 +27,8 @@ class AgendaController extends Controller
     public function index(Request $request)
     {
         $units = Unit::all();
+        $agenda = Agenda::with('pendamping')->where('unit_id', Auth::user()->unit_id)->whereDate('tanggal', Carbon::now())->get();
 
-        // $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
-        $agenda = DB::table('agendas')
-
-                      ->where('unit_id','=', Auth::user()->unit_id)
-                    //   ->join('add_pedampings','add_pedampings.agenda_id','=','agendas.id')
-                      ->whereDate('tanggal','=',Carbon::now())->get();
-
-        // $agenda = Agenda::whereDate('tanggal',Carbon::now())->get()
-        // $agenda = Agenda::whereDate('tanggal',Carbon::now())->get();
-        // dd($agenda);
 
         return view('agenda.index', compact('agenda', 'units'));
     }
@@ -46,12 +37,33 @@ class AgendaController extends Controller
 public function index_sestama(Request $request)
     {
         $units = Unit::all();
+        // $user = Auth::user();
+        // $addPendamping = AddPedamping::where('unit_id', '=', Auth::user()->unit_id)->get();
+        $addPendamping = AddPedamping::where('unit_id', Auth::user()->unit_id)->get();
 
-        $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
+            $agendaIds = [];
 
-        $agenda = Agenda::all();
+            foreach ($addPendamping as $item) {
+                // Akses relasi Agenda dan ambil agenda_id
+                $agendaId = $item->agenda->id; // Sesuaikan dengan nama relasi Anda dan kolom agenda_id
 
+                // Tambahkan agenda_id ke dalam array jika belum ada
+                if (!in_array($agendaId, $agendaIds)) {
+                    $agendaIds[] = $agendaId;
+                }
+            }
+        // $idAgenda = $addPendamping->agenda_id;
+        // $agenda = AddPedamping::join('users', 'add_pedampings.user_id', '=', 'users.id')
+        //                 ->join('agendas', 'add_pedampings.agenda_id', '=', 'agendas.id')
+        //                 ->select('add_pedampings.user_id', 'add_pedampings.agenda_id')
+        //                 ->where('users.unit_id', '=', Auth::user()->unit_id)
+        //                 ->get();
+        // $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
+        $agenda = Agenda::with('pendamping')->where('id','=', $agendaIds)->whereDate('tanggal', Carbon::now())->get();
+        // $agenda = Agenda::where('id', '=', $idAgenda)->get();
+        // $agenda = Agenda::all();
 
+        // dd($agenda);
         return view('agenda_all.index', compact('agenda', 'units'));
     }
 

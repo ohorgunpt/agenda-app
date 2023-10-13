@@ -126,10 +126,16 @@
                                                       <td>{{ $a->mulai }}</td>
                                                       <td>{{ $a->selesai }}</td>
                                                       <td>
-                                                          <ul>
+                                                          {{-- <ul>
+                                                            {{-- one to many --}}
                                                               {{-- @foreach ($a->pendamping()->get() as $item)
                                                                   <li>{{ $item->namaUser->name }}</li>
                                                               @endforeach --}}
+                                                          {{-- </ul> --}}
+                                                          <ul>
+                                                              @foreach ($a->pendamping()->get() as $item)
+                                                                  <li>{{ $item->namaUser->name }}</li>
+                                                              @endforeach
                                                           </ul>
 
                                                       </td>
