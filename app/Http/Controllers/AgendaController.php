@@ -11,6 +11,7 @@ use App\Models\Personel;
 use App\Models\User;
 use App\Models\Sambutan;
 use App\Models\Pointer;
+use App\Models\AddPedamping;
 
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -50,6 +51,7 @@ public function index_sestama(Request $request)
 
         $agenda = Agenda::all();
 
+
         return view('agenda_all.index', compact('agenda', 'units'));
     }
 
@@ -70,6 +72,7 @@ public function index_sestama(Request $request)
                                     ->where('kategori','like','%'. $request->kategori . '%')
                                     ->where('status','like','%'. $request->status . '%')
                                     ->where('agenda','like','%'. $request->q . '%')
+                                    ->where('sifat','like','%'. $request->sifat . '%')
                                     ->get();
 
 

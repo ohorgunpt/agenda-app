@@ -19,6 +19,9 @@ return new class extends Migration
 
             $table->bigInteger('agenda_id')->nullable()->unsigned();
             $table->foreign('agenda_id')->references('id')->on('agendas')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->bigInteger('unit_id')->nullable()->unsigned();
+            $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

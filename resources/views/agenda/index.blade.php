@@ -62,6 +62,16 @@
                                               </select>
                                           </div>
                                       </div>
+                                      <div class="col">
+                                        <div class="input-group">
+                                            <select name="sifat" class="form-control" id="">
+                                                <option value="Umum">Umum</option>
+                                                <option value="Rahasia">Rahasia</option>
+                                                <option value="Pribadi">Pribadi</option>
+                                                <option value="Unclassified">Unclassified</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
                                       <div class="col">
                                           <input type="text" name="q" placeholder="Cari Disini ..."

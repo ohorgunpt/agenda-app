@@ -34,10 +34,12 @@
                     @csrf
                     @method('POST')
                     <input type="hidden" name="agenda_id" value="{{ $agenda->id }}">
+
                     <select name="pendamping_id" class="form-control" onchange="func1(this.value)">
                         <option selected>Pilih Pendamping</option>
                         @foreach ($user as $pendamping)
-                            <option value="{{ $pendamping->id }}">{{ $pendamping->name }}</option>
+                            <option value="{{ $pendamping->id }}">{{ $pendamping->name }}   </option>
+
                         @endforeach
                     </select>
 
