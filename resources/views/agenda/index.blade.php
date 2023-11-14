@@ -27,9 +27,9 @@
                                   Auth::user()->role == 'dsp' ||
                                   Auth::user()->role == 'humas')
                               <div class="card-header">
-                                  @if (Auth::user()->role == 'tu_kepala' || Auth::user()->role == 'tu_sestama')
+                                  {{-- @if (Auth::user()->role == 'tu_kepala' || Auth::user()->role == 'tu_sestama') --}}
                                       <a href="{{ route('agenda.create') }}" class="btn btn-primary">Add Agenda</a>
-                                  @endif
+                                  {{-- @endif --}}
 
                                   &nbsp;&nbsp;
 
