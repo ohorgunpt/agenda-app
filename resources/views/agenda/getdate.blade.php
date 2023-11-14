@@ -31,12 +31,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="input-group">
-                                            <input type="date" name="end" class="form-control">
 
-                                        </div>
-                                    </div>
 
 
                                     <div class="col">
@@ -97,19 +92,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
 
-                                            use App\Models\Agenda;
-                                            // $user - Auth::user()->unit_id;
-                                            $agendaUser = Agenda::where('unit_id', '=', Auth::user()->unit_id);
-
-                                            //   $pendampings = DB::table('add_pedampings')
-
-                                            //                     ->leftJoin('users','users.id','=','add_pedampings.user_id')
-                                            //                     ->first();
-                                            //   $pendamping = AddPedamping::where('agenda_id', '=', 'id', 'user_id','=','id')->get();
-
-                                        @endphp
                                         @if (Auth::user()->role == 'tu_kepala' || Auth::user()->role == 'dsp' || Auth::user()->role == 'humas')
                                             {{-- <h1>{{$b->agenda}}</h1> --}}
 

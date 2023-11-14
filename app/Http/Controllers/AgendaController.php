@@ -86,10 +86,11 @@ public function index_sestama(Request $request)
                                     ->where('agenda','like','%'. $request->q . '%')
                                     ->where('sifat','like','%'. $request->sifat . '%')
                                     ->get();
+                                    // dd($request->kategori);
 
 
-
-        return view('agenda.getdate', $data);
+            dd($data);
+        // return view('agenda.getdate', $data);
     }
 
     /**
