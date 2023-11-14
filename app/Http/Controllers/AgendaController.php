@@ -52,14 +52,7 @@ public function index_sestama(Request $request)
                     $agendaIds[] = $agendaId;
                 }
             }
-        // $idAgenda = $addPendamping->agenda_id;
-        // $agenda = AddPedamping::join('users', 'add_pedampings.user_id', '=', 'users.id')
-        //                 ->join('agendas', 'add_pedampings.agenda_id', '=', 'agendas.id')
-        //                 ->select('add_pedampings.user_id', 'add_pedampings.agenda_id')
-        //                 ->where('users.unit_id', '=', Auth::user()->unit_id)
-        //                 ->get();
-        // $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
-        $agenda = Agenda::with('pendamping')->where('id','=', $agendaIds)->whereDate('tanggal', Carbon::now())->get();
+            $agenda = Agenda::with('pendamping')->where('id','=', $agendaIds)->whereDate('tanggal', Carbon::now())->get();
         // $agenda = Agenda::where('id', '=', $idAgenda)->get();
         // $agenda = Agenda::all();
 
@@ -69,28 +62,59 @@ public function index_sestama(Request $request)
 
     public function getDate(Request $request)
     {
-        //kategori
-        // $category = Category::all();
 
-        //agenda with text
-        // if ($request->q) {
-        //     $keyword = $request->input('q');
-        //     $data = Agenda::where('agenda','like','%'. $keyword . '%');
-        // }
-        //tanggal
-
-            $data['result'] = Agenda::whereBetween('tanggal',[$request->start, $request->end])
-                                    ->where('unit_id','=',Auth::user()->unit_id)
-                                    ->where('kategori','like','%'. $request->kategori . '%')
-                                    ->where('status','like','%'. $request->status . '%')
-                                    ->where('agenda','like','%'. $request->q . '%')
-                                    ->where('sifat','like','%'. $request->sifat . '%')
-                                    ->get();
+            // $data['result'] = Agenda::whereBetween('tanggal',[$request->start, $request->end])
+            //                         ->where('unit_id','=',Auth::user()->unit_id)
+            //                         ->where('kategori','like','%'. $request->kategori . '%')
+            //                         ->where('status','like','%'. $request->status . '%')
+            //                         ->where('agenda','like','%'. $request->q . '%')
+            //                         ->where('sifat','like','%'. $request->sifat . '%')
+            //                         ->get();
                                     // dd($request->kategori);
+         // Retrieve input values from the request
+         $startDate = $request->input('start');
+         $endDate = $request->input('end');
+         $kategori = $request->input('kategori');
+         $status = $request->input('status');
+         $sifat = $request->input('sifat');
+         $searchQuery = $request->input('q');
+
+         // Query the database based on the input values
+         $query = Agenda::query();
+
+         if ($startDate) {
+             $query->whereDate('tanggal', '>=', $startDate);
+         }
+
+         if ($endDate) {
+             $query->whereDate('tanggal', '<=', $endDate);
+         }
+
+         if ($kategori) {
+             $query->where('kategori', $kategori);
+         }
+
+         if ($status) {
+             $query->where('status', $status);
+         }
+
+         if ($sifat) {
+             $query->where('sifat', $sifat);
+         }
+
+         if ($searchQuery) {
+             $query->where('agenda', 'LIKE', '%' . $searchQuery . '%');
+             // Replace 'column_name' with the actual column name you want to search on
+         }
+
+         $data = $query->get();
+
+         // Pass the results to the view
+        //  return view('your_view', ['results' => $results]);
 
 
-            dd($data);
-        // return view('agenda.getdate', $data);
+            // dd($data);
+        return view('agenda.getdate', ['data' => $data]);
     }
 
     /**
