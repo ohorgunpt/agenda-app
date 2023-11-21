@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Unit;
 use App\Models\AddPedamping;
-use DB;
+use Auth;
+
 
 class AddPendampingController extends Controller
 {
@@ -34,15 +36,14 @@ class AddPendampingController extends Controller
     public function store(Request $request)
     {
 
-        // $agenda_id = Agenda::find($id);
-        // $userUnit = User::where('id','=',$request->pendamping_id)->first();
-       $userUnit= DB::select('select unit_id from users where id','=',$request->pendamping_id );
+
+        $userUnit = User::where('id','=',$request->pendamping_id)->first();
+        $id_Unit = $userUnit->unit_id;
         $pendamping = AddPedamping::create(
             [
                 'user_id' => $request->pendamping_id,
-
                 'agenda_id'=>$request->agenda_id,
-                'unit_id'=>$userUnit,
+                'unit_id'=>$id_Unit,
 
             ]
         );

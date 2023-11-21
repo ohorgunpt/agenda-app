@@ -7,7 +7,6 @@
   @section('content')
       <section class="section">
           <div class="section-header">
-              {{-- {{ Auth::user()->unit_id }} --}}
               @php
                   use App\Models\Unit;
 
@@ -23,9 +22,15 @@
                           $agendacat = Category::all();
                       @endphp
                       <div class="card">
-                          @if (Auth::user()->role == 'tu_kepala' || Auth::user()->role == 'tu_sestama')
+                          @if (Auth::user()->role == 'tu_kepala' ||
+                                  Auth::user()->role == 'tu_sestama' ||
+                                  Auth::user()->role == 'dsp' ||
+                                  Auth::user()->role == 'humas')
                               <div class="card-header">
-                                  <a href="{{ route('agenda.create') }}" class="btn btn-primary">Add Agenda</a>
+                                  {{-- @if (Auth::user()->role == 'tu_kepala' || Auth::user()->role == 'tu_sestama') --}}
+                                      <a href="{{ route('agenda.create') }}" class="btn btn-primary">Add Agenda</a>
+                                  {{-- @endif --}}
+
                                   &nbsp;&nbsp;
 
                                   <form action="{{ route('agenda.getdate') }}" class="row" method="get">
@@ -47,7 +52,8 @@
 
                                                   <option value="">Semua Kategori</option>
                                                   @foreach ($agendacat as $cat)
-                                                      <option   value="{{ $cat->namakategori }}">{{ $cat->namakategori }} </option>
+                                                      <option value="{{ $cat->namakategori }}">{{ $cat->namakategori }}
+                                                      </option>
                                                   @endforeach
                                               </select>
                                           </div>
@@ -55,23 +61,23 @@
                                       <div class="col">
                                           <div class="input-group">
                                               <select name="status" class="form-control" id="">
-                                                <option value="Penjadwalan Awal">Penjadwalan Awal</option>
-                                                <option value="Terlaksana">Terlaksana</option>
-                                                <option value="Ditunda">Ditunda</option>
-                                                <option value="Dibatalkan">Dibatalkan</option>
+                                                  <option value="Penjadwalan Awal">Penjadwalan Awal</option>
+                                                  <option value="Terlaksana">Terlaksana</option>
+                                                  <option value="Ditunda">Ditunda</option>
+                                                  <option value="Dibatalkan">Dibatalkan</option>
                                               </select>
                                           </div>
                                       </div>
                                       <div class="col">
-                                        <div class="input-group">
-                                            <select name="sifat" class="form-control" id="">
-                                                <option value="Umum">Umum</option>
-                                                <option value="Rahasia">Rahasia</option>
-                                                <option value="Pribadi">Pribadi</option>
-                                                <option value="Unclassified">Unclassified</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                          <div class="input-group">
+                                              <select name="sifat" class="form-control" id="">
+                                                  <option value="Umum">Umum</option>
+                                                  <option value="Rahasia">Rahasia</option>
+                                                  <option value="Pribadi">Pribadi</option>
+                                                  <option value="Unclassified">Unclassified</option>
+                                              </select>
+                                          </div>
+                                      </div>
 
                                       <div class="col">
                                           <input type="text" name="q" placeholder="Cari Disini ..."
@@ -126,10 +132,16 @@
                                                       <td>{{ $a->mulai }}</td>
                                                       <td>{{ $a->selesai }}</td>
                                                       <td>
-                                                          <ul>
-                                                              {{-- @foreach ($a->pendamping()->get() as $item)
+                                                          {{-- <ul>
+                                                            {{-- one to many --}}
+                                                          {{-- @foreach ($a->pendamping()->get() as $item)
                                                                   <li>{{ $item->namaUser->name }}</li>
                                                               @endforeach --}}
+                                                          {{-- </ul> --}}
+                                                          <ul>
+                                                              @foreach ($a->pendamping()->get() as $item)
+                                                                  <li>{{ $item->namaUser->name }}</li>
+                                                              @endforeach
                                                           </ul>
 
                                                       </td>
