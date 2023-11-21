@@ -28,7 +28,7 @@ class AddPedamping extends Model
      */
     public function agenda()
     {
-        return $this->belongsTo(Agenda::class,'user_id');
+        return $this->belongsTo(Agenda::class, 'agenda_id');
     }
 
     /**

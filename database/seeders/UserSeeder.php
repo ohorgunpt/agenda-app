@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
                 'email'=>'superadmin@seeder.com',
                 'password'=>Hash::make('password'),
                 'role'=>'superadmin',
+                'nip'=>'123',
                 'unit_id'  =>1,
             ],
             [
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
                 'email'=>'tukepala@seeder.com',
                 'password'=>Hash::make('password'),
                 'role'=>'tu_kepala',
+                'nip'=>'234',
                 'unit_id' =>2,
 
             ],
@@ -36,6 +38,7 @@ class UserSeeder extends Seeder
                 'email'=>'dsp@seeder.com',
                 'password'=>Hash::make('password'),
                 'role'=>'dsp',
+                'nip'=>'2345',
                 'unit_id' =>2,
 
             ],
@@ -44,6 +47,7 @@ class UserSeeder extends Seeder
                 'email'=>'humas@seeder.com',
                 'password'=>Hash::make('password'),
                 'role'=>'humas',
+                'nip'=>'23456',
                 'unit_id' =>2,
 
             ],
@@ -52,7 +56,8 @@ class UserSeeder extends Seeder
                 'email'=>'tu_sestama@seeder.com',
                 'password'=>Hash::make('password'),
                 'role'=>'tu_sestama',
-                'unit_id' =>2,
+                'nip'=>'2344567',
+                'unit_id' =>3,
 
             ],
         ];

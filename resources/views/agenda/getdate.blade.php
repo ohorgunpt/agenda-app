@@ -18,12 +18,16 @@
         <div class="section-body">
             <div class="row">
                 <div class="col-12">
+                    @php
+                        use App\Models\Category;
+                        $agendacat = Category::all();
+                    @endphp
                     <div class="card">
                         @if (Auth::user()->role == 'tu_kepala')
                             <div class="card-header">
                                 <a href="{{ route('agenda.create') }}" class="btn btn-primary">Add Agenda</a>
                                 &nbsp;&nbsp;
-                                <form action="{{ route('agenda.getdate') }}" class="row" method="POST">
+                                <form action="{{ route('agenda.getdate') }}" class="row" method="get">
                                     @csrf
                                     <div class="col">
                                         <div class="input-group">
@@ -34,37 +38,47 @@
                                     <div class="col">
                                         <div class="input-group">
                                             <input type="date" name="end" class="form-control">
-
                                         </div>
                                     </div>
-
-
-                                    <div class="col">
-                                        <select name="" class="form-control" id="">
-                                            <option value="">Semua Agenda</option>
-                                        </select>
-                                    </div>
-
                                     <div class="col">
                                         <div class="input-group">
-                                            <select name="" class="form-control" id="">
+                                            <select name="kategori" class="form-control" id="">
+
                                                 <option value="">Semua Kategori</option>
+                                                @foreach ($agendacat as $cat)
+                                                    <option value="{{ $cat->namakategori }}">{{ $cat->namakategori }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="input-group">
-                                            <select name="" class="form-control" id="">
-                                                <option value="">Semua Status</option>
+                                            <select name="status" class="form-control" id="">
+                                                <option value="Penjadwalan Awal">Penjadwalan Awal</option>
+                                                <option value="Terlaksana">Terlaksana</option>
+                                                <option value="Ditunda">Ditunda</option>
+                                                <option value="Dibatalkan">Dibatalkan</option>
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <select name="sifat" class="form-control" id="">
+                                                <option value="Umum">Umum</option>
+                                                <option value="Rahasia">Rahasia</option>
+                                                <option value="Pribadi">Pribadi</option>
+                                                <option value="Unclassified">Unclassified</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <div class="col">
                                         <input type="text" name="q" placeholder="Cari Disini ..."
                                             class="form-control">
                                     </div>
                                     <div class="col">
-                                        <button class="btn btn-success" type="submit">Cari Disini</button>
+                                        <button class="btn btn-success" type="submit">Search...</button>
                                     </div>
                                 </form>
                             </div>
@@ -97,23 +111,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
 
-                                            use App\Models\Agenda;
-                                            // $user - Auth::user()->unit_id;
-                                            $agendaUser = Agenda::where('unit_id', '=', Auth::user()->unit_id);
-
-                                            //   $pendampings = DB::table('add_pedampings')
-
-                                            //                     ->leftJoin('users','users.id','=','add_pedampings.user_id')
-                                            //                     ->first();
-                                            //   $pendamping = AddPedamping::where('agenda_id', '=', 'id', 'user_id','=','id')->get();
-
-                                        @endphp
                                         @if (Auth::user()->role == 'tu_kepala' || Auth::user()->role == 'dsp' || Auth::user()->role == 'humas')
                                             {{-- <h1>{{$b->agenda}}</h1> --}}
 
-                                            @foreach ($result as $a)
+                                            @foreach ($data as $a)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ Carbon\Carbon::parse($a->tanggal)->translatedFormat('l, d F Y') }}
@@ -235,7 +237,7 @@
                                         @elseif (Auth::user()->role == 'tu_sestama')
                                             {{-- <h1>{{$b->agenda}}</h1> --}}
 
-                                            @foreach ($agenda as $a)
+                                            @foreach ($result as $a)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ Carbon\Carbon::parse($a->tanggal)->translatedFormat('l, d F Y') }}

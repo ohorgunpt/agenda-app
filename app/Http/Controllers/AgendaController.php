@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Sambutan;
 use App\Models\Pointer;
 use App\Models\AddPedamping;
+
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Carbon\Carbon;
@@ -26,10 +27,8 @@ class AgendaController extends Controller
     public function index(Request $request)
     {
         $units = Unit::all();
+        $agenda = Agenda::with('pendamping')->where('unit_id', Auth::user()->unit_id)->whereDate('tanggal', Carbon::now())->get();
 
-        $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
-
-        $agenda = Agenda::whereDate('tanggal',Carbon::now())->get();
 
         return view('agenda.index', compact('agenda', 'units'));
     }
@@ -38,31 +37,84 @@ class AgendaController extends Controller
 public function index_sestama(Request $request)
     {
         $units = Unit::all();
+        // $user = Auth::user();
+        // $addPendamping = AddPedamping::where('unit_id', '=', Auth::user()->unit_id)->get();
+        $addPendamping = AddPedamping::where('unit_id', Auth::user()->unit_id)->get();
 
-        $agenda = Agenda::where('unit_id','=',Auth::user()->unit_id)->get();
+            $agendaIds = [];
 
-        $agenda = Agenda::all();
+            foreach ($addPendamping as $item) {
+                // Akses relasi Agenda dan ambil agenda_id
+                $agendaId = $item->agenda->id; // Sesuaikan dengan nama relasi Anda dan kolom agenda_id
 
+                // Tambahkan agenda_id ke dalam array jika belum ada
+                if (!in_array($agendaId, $agendaIds)) {
+                    $agendaIds[] = $agendaId;
+                }
+            }
+            $agenda = Agenda::with('pendamping')->where('id','=', $agendaIds)->whereDate('tanggal', Carbon::now())->get();
+        // $agenda = Agenda::where('id', '=', $idAgenda)->get();
+        // $agenda = Agenda::all();
+
+        // dd($agenda);
         return view('agenda_all.index', compact('agenda', 'units'));
     }
 
     public function getDate(Request $request)
     {
-        //kategori
-        // $category = Category::all();
 
-        //agenda with text
-        // if ($request->q) {
-        //     $keyword = $request->input('q');
-        //     $data = Agenda::where('agenda','like','%'. $keyword . '%');
-        // }
-        //tanggal
+            // $data['result'] = Agenda::whereBetween('tanggal',[$request->start, $request->end])
+            //                         ->where('unit_id','=',Auth::user()->unit_id)
+            //                         ->where('kategori','like','%'. $request->kategori . '%')
+            //                         ->where('status','like','%'. $request->status . '%')
+            //                         ->where('agenda','like','%'. $request->q . '%')
+            //                         ->where('sifat','like','%'. $request->sifat . '%')
+            //                         ->get();
+                                    // dd($request->kategori);
+         // Retrieve input values from the request
+         $startDate = $request->input('start');
+         $endDate = $request->input('end');
+         $kategori = $request->input('kategori');
+         $status = $request->input('status');
+         $sifat = $request->input('sifat');
+         $searchQuery = $request->input('q');
 
-            $data['result'] = Agenda::whereBetween('tanggal',[$request->start, $request->end])->get();
+         // Query the database based on the input values
+         $query = Agenda::query();
+
+         if ($startDate) {
+             $query->whereDate('tanggal', '>=', $startDate);
+         }
+
+         if ($endDate) {
+             $query->whereDate('tanggal', '<=', $endDate);
+         }
+
+         if ($kategori) {
+             $query->where('kategori', $kategori);
+         }
+
+         if ($status) {
+             $query->where('status', $status);
+         }
+
+         if ($sifat) {
+             $query->where('sifat', $sifat);
+         }
+
+         if ($searchQuery) {
+             $query->where('agenda', 'LIKE', '%' . $searchQuery . '%');
+             // Replace 'column_name' with the actual column name you want to search on
+         }
+
+         $data = $query->get();
+
+         // Pass the results to the view
+        //  return view('your_view', ['results' => $results]);
 
 
-
-        return view('agenda.getdate', $data);
+            // dd($data);
+        return view('agenda.getdate', ['data' => $data]);
     }
 
     /**
